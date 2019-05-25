@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<reviews>
+  <review>
+    <id>1</id>
+    <company-id>1</company-id>
+    <rating>4.6</rating>
+    <jobStatus>Current</jobStatus>
+    <jobLocation>Waldorf, Germany</jobLocation>
+    <lastYearEmployer></lastYearEmployer>
+    <employmentStatus>Full-time</employmentStatus>
+    <skillsrequired>
+      <skill>
+        <name>Java</name>
+      </skill>
+      <skill>
+        <name>C#</name>
+      </skill>
+    </skillsrequired>
+    <reviewTitle>Good experience</reviewTitle>
+    <pros>
+      <pro>
+        <comment>Good software architecture and code base</comment>
+      </pro>
+      <pro>
+        <comment>Helpful team</comment>
+      </pro>
+    </pros>
+    <cons>
+      <con>
+        <comment>Not good management</comment>
+      </con>
+      <con>
+        <comment>Work from home not available</comment>
+      </con>
+    </cons>
+    <wouldYouRecommend>Yes</wouldYouRecommend>
+  </review>
+</reviews>

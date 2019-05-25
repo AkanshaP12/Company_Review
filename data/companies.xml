@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<companies>
+  <company>
+    <id>1</id>
+    <name>SAP</name>
+    <avgRating>4.5</avgRating>
+  </company>
+</companies>

@@ -1,0 +1,11 @@
+﻿<Window x:Class="Company_Review.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Company_Review"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized" WindowStyle="ToolWindow">
+    <Frame Content="" NavigationUIVisibility="Hidden" Name="Frm_myapp"/>
+
+</Window>
