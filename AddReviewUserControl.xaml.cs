@@ -16,22 +16,14 @@ using System.Windows.Shapes;
 namespace Company_Review
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddReviewUserControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddReviewUserControl : UserControl
     {
-        public MainWindow()
+        public AddReviewUserControl()
         {
             InitializeComponent();
             
-        }
-
-        private void Btn_Home_Click(object sender, RoutedEventArgs e)
-        {
-            var home = new HomeWindow();
-            home.Owner = this;
-            home.Show();
-
         }
     }
 }

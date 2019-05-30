@@ -1,8 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<companies>
-  <company>
-    <id>1</id>
-    <name>SAP</name>
-    <avgRating>4.5</avgRating>
-  </company>
-</companies>
+<companyDetails>
+    <company>
+      <id>1</id>
+      <name>SAP</name>
+      <logoPath>Resources\Images\Logos\sap.png</logoPath>
+    </company>
+    <company>
+      <id>2</id>
+      <name>ABB</name>
+      <logoPath>Resources\Images\Logos\abb.png</logoPath>
+    </company>
+    <company>
+      <id>3</id>
+      <name>BaSF</name>
+      <logoPath>Resources\Images\Logos\basf.png</logoPath>
+    </company>
+</companyDetails>

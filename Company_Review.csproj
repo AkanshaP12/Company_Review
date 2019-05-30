@@ -55,13 +55,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="core\Companies.cs" />
-    <Compile Include="core\Converter\XMLSerializerWrapper.cs" />
-    <Compile Include="core\Reviews.cs" />
+    <Compile Include="AddReviewUserControl.xaml.cs">
+      <DependentUpon>AddReviewUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="classes\core\CompanyReview.cs" />
+    <Compile Include="classes\core\CompanyOverview.cs" />
+    <Compile Include="classes\core\Companies.cs" />
+    <Compile Include="classes\core\Converter\XMLSerializerWrapper.cs" />
+    <Compile Include="classes\core\Reviews.cs" />
+    <Compile Include="HomeWindow.xaml.cs">
+      <DependentUpon>HomeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewReviews.xaml.cs">
       <DependentUpon>ViewReviews.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewReviewsUserControl.xaml.cs">
+      <DependentUpon>ViewReviewsUserControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddReviewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HomeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,6 +100,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ViewReviews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewReviewsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,6 +139,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="data\companies.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Logos\sap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Logos\abb.png" />
+    <Resource Include="Resources\Images\Logos\basf.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

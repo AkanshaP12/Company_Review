@@ -1,12 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<reviews>
+<userReviews>
+    <review>
+      <id>1</id>
+      <company-id>1</company-id>
+      <rating>4.6</rating>
+      <jobStatus>Current</jobStatus>
+      <jobLocation>Waldorf, Germany</jobLocation>
+      <jobDepartment>Software Development</jobDepartment>
+      <startDate>12/10/2018</startDate>
+      <endDate>01/04/2019</endDate>
+      <employmentStatus>Full-time</employmentStatus>
+      <skillsrequired>
+        <skill>
+          <name>Java</name>
+        </skill>
+        <skill>
+          <name>C#</name>
+        </skill>
+      </skillsrequired>
+      <reviewTitle>Good experience</reviewTitle>
+      <pros>
+        <pro>
+          <comment>Good software architecture and code base</comment>
+        </pro>
+        <pro>
+          <comment>Helpful team</comment>
+        </pro>
+      </pros>
+      <cons>
+        <con>
+          <comment>Not good management</comment>
+        </con>
+        <con>
+          <comment>Work from home not available</comment>
+        </con>
+      </cons>
+      <wouldYouRecommend>Yes</wouldYouRecommend>
+    </review>
   <review>
-    <id>1</id>
+    <id>2</id>
     <company-id>1</company-id>
-    <rating>4.6</rating>
+    <rating>4</rating>
     <jobStatus>Current</jobStatus>
     <jobLocation>Waldorf, Germany</jobLocation>
-    <lastYearEmployer></lastYearEmployer>
+    <jobDepartment>Software Development</jobDepartment>
+    <startDate>11/10/2018</startDate>
+    <endDate>05/04/2019</endDate>
     <employmentStatus>Full-time</employmentStatus>
     <skillsrequired>
       <skill>
@@ -16,23 +55,48 @@
         <name>C#</name>
       </skill>
     </skillsrequired>
-    <reviewTitle>Good experience</reviewTitle>
+    <reviewTitle>Great journey</reviewTitle>
     <pros>
       <pro>
-        <comment>Good software architecture and code base</comment>
-      </pro>
-      <pro>
-        <comment>Helpful team</comment>
+        <comment>Very helpful teammates</comment>
       </pro>
     </pros>
     <cons>
       <con>
-        <comment>Not good management</comment>
-      </con>
-      <con>
-        <comment>Work from home not available</comment>
+        <comment>Not good salary</comment>
       </con>
     </cons>
-    <wouldYouRecommend>Yes</wouldYouRecommend>
+    <wouldYouRecommend>No</wouldYouRecommend>
   </review>
-</reviews>
+  <review>
+    <id>3</id>
+    <company-id>2</company-id>
+    <rating>1</rating>
+    <jobStatus>Current</jobStatus>
+    <jobLocation>Heidelberg, Germany</jobLocation>
+    <jobDepartment>Software Development</jobDepartment>
+    <startDate>11/10/2018</startDate>
+    <endDate>05/04/2019</endDate>
+    <employmentStatus>Full-time</employmentStatus>
+    <skillsrequired>
+      <skill>
+        <name>.Net</name>
+      </skill>
+      <skill>
+        <name>WPF</name>
+      </skill>
+    </skillsrequired>
+    <reviewTitle>Not good experience</reviewTitle>
+    <pros>
+      <pro>
+        <comment>Great people</comment>
+      </pro>
+    </pros>
+    <cons>
+      <con>
+        <comment>Not good product</comment>
+      </con>
+    </cons>
+    <wouldYouRecommend>No</wouldYouRecommend>
+  </review>
+</userReviews>

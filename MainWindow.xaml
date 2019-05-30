@@ -6,6 +6,17 @@
         xmlns:local="clr-namespace:Company_Review"
         mc:Ignorable="d"
         Title="MainWindow" WindowState="Maximized" WindowStyle="ToolWindow">
-    <Frame Content="" NavigationUIVisibility="Hidden" Name="Frm_myapp"/>
-
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,-7,0" TextWrapping="Wrap" Text="Company Reviews" VerticalAlignment="Top" Height="46" Width="757" FontSize="40" FontWeight="Bold"/>
+        <TabControl TabStripPlacement="Left" Margin="0,70,0,0">
+            <TabItem Header="View Reviews" FontSize="25" Margin="-2,-2,0,-19" Height="72" VerticalAlignment="Top" Width="300">
+                <local:ViewReviewsUserControl x:Name="viewReviewsTab"/>
+            </TabItem>
+            <TabItem Header="Add Reviews" FontSize="25" Margin="-2,0,0,0" Height="72" Width="300">
+                <local:AddReviewUserControl x:Name="addReviewTab"/>
+            </TabItem>
+            <TabItem Header="Profile" FontSize="25" Margin="-2,2,0,-2" Height="72" Width="300"/>
+        </TabControl>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="469,152,0,0" VerticalAlignment="Top" Width="75" Name="Btn_Home" Click="Btn_Home_Click"/>
+    </Grid>
 </Window>
