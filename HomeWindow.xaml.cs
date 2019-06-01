@@ -78,7 +78,14 @@ namespace Company_Review
 
         private void Tbx_filter_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            var filter = Tbx_filter.Text;
+            if (filter == "")
+                Lbx_companies.ItemsSource = companies;
+            else
+            {
+                var results = from s in companies where s.companyOverview.name.ToLower().Contains(filter.ToLower()) select s;
+                Lbx_companies.ItemsSource = results;
+            }
         }
     }
 }

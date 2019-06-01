@@ -4,31 +4,84 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="HomeWindow" WindowState="Maximized" WindowStyle="ToolWindow">
+        Title="HomeWindow" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Student Work Placement" FontSize="18"></TextBlock>
-        <Grid Grid.Row="1">
+        <TextBlock Grid.Row="0" Text="Student Work Placement" FontSize="18" Margin="30,0,0,0"></TextBlock>
+        <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180"></ColumnDefinition>
-                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Margin="20,10,20,120" Orientation="Vertical" Grid.Column="0" Background="Azure">
-                <TextBox x:Name="Tbx_filter" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130" ToolTip="Search Company Name" TextChanged="Tbx_filter_TextChanged"/>
-                <ListBox x:Name="Lbx_companies" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" DisplayMemberPath="companyOverview.name" Height="200" Margin="0,20,0,0"/>
+            <StackPanel Margin="30,10,20,120" Orientation="Vertical" Grid.Column="0" >
+                <TextBox x:Name="Tbx_filter" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="180" ToolTip="Search Company Name" TextChanged="Tbx_filter_TextChanged"/>
+                <ListBox x:Name="Lbx_companies" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180" FontSize="20" Height="200" Margin="0,20,0,0" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50">
+                                    </ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding companyOverview.logoPath}" Width="25" Height="25"/>
+                                <TextBlock Grid.Column="1" FontSize="15">
+                                    <Run Text="{Binding companyOverview.name}"/>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="2" Background="Beige">
-                <StackPanel Orientation="Vertical" DataContext="{Binding ElementName=Lbx_companies, Path=SelectedItem}" Visibility="Visible" Name="Sp_selectedCompany">
-                    <TextBlock Text="{Binding name}" FontSize="30"/>
+            <StackPanel   Margin="30,10,20,120" Orientation="Vertical" Grid.Column="1" >
+                <StackPanel Margin="20,20,20,0" Orientation="Vertical">
+                    <TextBlock Text="Department" FontSize="15"/>
+                <ComboBox></ComboBox>
                 </StackPanel>
-                <!--<Grid Margin="0,10,0,10">
+                <StackPanel Margin="20,50,20,0" Orientation="Vertical">
+                    
+                    <TextBlock Text="Employment Status" FontSize="15"/>
+                    <ComboBox>
+                        <ComboBoxItem Content="Full Time" IsSelected="True">
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Part Time" >
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Student Work">
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Intern">
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Freelancer">
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Margin="20,50,20,0" Orientation="Vertical">
+                    <TextBlock Text="Location" FontSize="15"/>
+                    <ComboBox>
+                    </ComboBox>
+                </StackPanel>
+                
+                </StackPanel>
+            <Grid Grid.Column="2" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60">
+                    </RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" DataContext="{Binding ElementName=Lbx_companies, Path=SelectedItem}" Visibility="Visible" Name="Sp_selectedCompany" Grid.Row="0" >
+                    <TextBlock Text="{Binding companyOverview.name}" FontSize="30"/>
+                    <Button Name="Btn_AddReview" Margin="580,0,0,0" Width="120" Height="40"  Content="Add Review" FontSize="20" >
+                        
+                    </Button>
+                </StackPanel>
+                <!--<Grid Margin="0,10,0,10" Grid.Row="1">
                     <Border Width="700" Height="90" BorderThickness="2" BorderBrush="Gainsboro">
                         <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal"><Image Source="Resources\Images\Logos\sap.png" Width="40" Margin="20,0,0,0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources\Images\Logos\sap.png" Width="40" Margin="20,0,0,0"/>
                                 <TextBlock Text="SAP" FontSize="20" Margin="20,0,0,0" VerticalAlignment="Center"></TextBlock>
                                 <TextBlock Text=" Rated 4/5" FontSize="20" Margin="300,0,0,10"></TextBlock>
                             </StackPanel>
@@ -40,32 +93,32 @@
                         </StackPanel>
                     </Border>
                 </Grid>-->
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Grid.Row="1" Margin="100,0,0,0">
                     <ItemsControl Name="Itc_reviews">
-                       <ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                
+
                                 <Grid Margin="0,10,0,10">
-                    <Border Width="700" Height="90" BorderThickness="2" BorderBrush="Gainsboro">
-                        <StackPanel Orientation="Vertical">
+                                    <Border Width="600" Height="90" BorderThickness="2" BorderBrush="Gainsboro" HorizontalAlignment="Left">
+                                        <StackPanel Orientation="Vertical">
                                             <StackPanel Orientation="Horizontal">
                                                 <Image Source="{Binding logoPath}" Width="40" Margin="20,0,0,0"/>
-                                                <TextBlock Text="{Binding name}" FontSize="20" Margin="20,0,0,0" VerticalAlignment="Center"></TextBlock>
-                                                <TextBlock Text="{Binding avgRating, StringFormat='Rating {0}'}" FontSize="20" Margin="300,0,0,10"></TextBlock>
-                            </StackPanel>
+                                                <TextBlock Text="{Binding name}" FontSize="20" Margin="30,0,0,0" VerticalAlignment="Center"></TextBlock>
+                                                <TextBlock Text="{Binding avgRating, StringFormat='Rating {0}'}" FontSize="20" Margin="350,0,0,10"></TextBlock>
+                                            </StackPanel>
 
                                             <TextBlock Text="{Binding noOfReviews, StringFormat='{}{0} reviews'}" FontSize="15" Margin="20,0,0,0"></TextBlock>
                                             <TextBlock Text="{Binding wouldRecommended, StringFormat='{}{0}% Would recommend to a friend'}" FontSize="15" Margin="20,0,0,10">
 
-                            </TextBlock>
-                        </StackPanel>
-                    </Border>
-                </Grid>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

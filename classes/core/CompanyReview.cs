@@ -12,5 +12,6 @@ namespace Company_Review.classes
         public CompanyOverview companyOverview { get; set; }
 
         public List<Review> reviews { get; set; }
+
     }
 }
