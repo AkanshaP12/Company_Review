@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Company_Review
+namespace Company_Review.Controls
 {
     /// <summary>
-    /// Interaction logic for ViewReviews.xaml
+    /// Interaction logic for AddReviewUC.xaml
     /// </summary>
-    public partial class ViewReviews : Page
+    public partial class AddReviewUC : UserControl
     {
-        public ViewReviews()
+        public AddReviewUC()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
     }
 }

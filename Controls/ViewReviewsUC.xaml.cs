@@ -1,9 +1,5 @@
-﻿using Company_Review.classes;
-using Company_Review.core;
-using Company_Review.core.Converter;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,25 +10,41 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Company_Review.classes;
+using Company_Review.core;
+using Company_Review.core.Converter;
+using System.Threading;
+using System.Collections.ObjectModel;
+using System.Globalization;
 
-namespace Company_Review
+namespace Company_Review.Controls
 {
-    /// <summary>
-    /// Interaction logic for HomeWindow.xaml
-    /// </summary>
-    public partial class HomeWindow : Window
-    {
-        ObservableCollection<CompanyReview> companies;
-        List<CompanyOverview> companyOverviews;
+    
 
-        public HomeWindow()
+    /// <summary>
+    /// Interaction logic for ViewReviewsUC.xaml
+    /// </summary>
+    public partial class ViewReviewsUC : UserControl
+    {
+        public ObservableCollection<CompanyReview> companies;
+        public List<CompanyOverview> companyOverviews;
+        public MainWindow mainWindow;
+
+        public ViewReviewsUC(MainWindow mainWindow)
         {
+            string language = "de";
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
             InitializeComponent();
             //GenerateCompanies();
             loadFromFile();
             Lbx_companies.ItemsSource = companies;
             Itc_reviews.ItemsSource = companyOverviews;
+            this.DataContext = this;
+            this.mainWindow = mainWindow;
         }
 
         private void loadFromFile()
@@ -41,18 +53,18 @@ namespace Company_Review
             companyOverviews = companyOverviewsFromFile.companyDetails;
             companies = new ObservableCollection<CompanyReview>();
             Reviews reviews = XMLSerializerWrapper.ReadXml<Reviews>("data\\reviews.xml");
-            foreach(CompanyOverview companyOverview in companyOverviews)
+            foreach (CompanyOverview companyOverview in companyOverviews)
             {
                 CompanyReview companyReview = new CompanyReview();
                 companyReview.companyOverview = companyOverview;
                 companyReview.reviews = (from n in reviews.reviews where n.companyId == companyOverview.id select n).ToList();
                 companyOverview.noOfReviews = companyReview.reviews.Count;
-                if(companyOverview.noOfReviews > 0)
+                if (companyOverview.noOfReviews > 0)
                 {
                     companyOverview.avgRating = (from n in reviews.reviews where n.companyId == companyOverview.id select float.Parse(n.rating)).Sum() / companyOverview.noOfReviews;
                 }
 
-                if(companyOverview.noOfReviews > 0)
+                if (companyOverview.noOfReviews > 0)
                 {
                     companyOverview.wouldRecommended = (from n in reviews.reviews where n.companyId == companyOverview.id & n.wouldYouRecommend == "Yes" select n.wouldYouRecommend).Count() * 100 / companyOverview.noOfReviews;
                 }
@@ -108,6 +120,11 @@ namespace Company_Review
         private void Btn_Back_To_All_Companies_Click(object sender, RoutedEventArgs e)
         {
             Lbx_companies.SelectedItem = null;
+        }
+
+        private void Btn_AddReview_Click(object sender, RoutedEventArgs e)
+        {
+            this.mainWindow.DisplayUserControl = new AddReviewUC();
         }
     }
 }

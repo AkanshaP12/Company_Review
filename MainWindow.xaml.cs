@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Company_Review.Controls;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,20 +20,43 @@ namespace Company_Review
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private UserControl _DisplayUserControl;
+
+        public UserControl DisplayUserControl
+        {
+            get
+            {
+                return _DisplayUserControl;
+            }
+            set
+            {
+                _DisplayUserControl = value;
+                OnPropertyChanged("DisplayUserControl");
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
-            
+            this.DataContext = this;
         }
 
-        private void Btn_Home_Click(object sender, RoutedEventArgs e)
+        private void OnPropertyChanged(string v)
         {
-            var home = new HomeWindow();
-            home.Owner = this;
-            home.Show();
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(v));
+            }
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void W_Main_Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DisplayUserControl = new ViewReviewsUC(this);
         }
     }
 }

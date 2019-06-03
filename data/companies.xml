@@ -3,16 +3,16 @@
     <company>
       <id>1</id>
       <name>SAP</name>
-      <logoPath>Resources\Images\Logos\sap.png</logoPath>
+      <logoPath>..\Resources\Images\Logos\sap.png</logoPath>
     </company>
     <company>
       <id>2</id>
       <name>ABB</name>
-      <logoPath>Resources\Images\Logos\abb.png</logoPath>
+      <logoPath>..\Resources\Images\Logos\abb.png</logoPath>
     </company>
     <company>
       <id>3</id>
       <name>BaSF</name>
-      <logoPath>Resources\Images\Logos\basf.png</logoPath>
+      <logoPath>..\Resources\Images\Logos\basf.png</logoPath>
     </company>
 </companyDetails>
