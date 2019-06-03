@@ -6,7 +6,8 @@
       <rating>4.6</rating>
       <jobStatus>Current</jobStatus>
       <jobLocation>Waldorf, Germany</jobLocation>
-      <jobDepartment>Software Development</jobDepartment>
+      <jobDepartment>Software development</jobDepartment>
+      <jobDesignation>Software engineer</jobDesignation>
       <startDate>12/10/2018</startDate>
       <endDate>01/04/2019</endDate>
       <employmentStatus>Full-time</employmentStatus>
@@ -43,7 +44,8 @@
     <rating>4</rating>
     <jobStatus>Current</jobStatus>
     <jobLocation>Waldorf, Germany</jobLocation>
-    <jobDepartment>Software Development</jobDepartment>
+    <jobDepartment>Product management</jobDepartment>
+	<jobDesignation>Team lead</jobDesignation>
     <startDate>11/10/2018</startDate>
     <endDate>05/04/2019</endDate>
     <employmentStatus>Full-time</employmentStatus>
@@ -74,7 +76,8 @@
     <rating>1</rating>
     <jobStatus>Current</jobStatus>
     <jobLocation>Heidelberg, Germany</jobLocation>
-    <jobDepartment>Software Development</jobDepartment>
+    <jobDepartment>Software development</jobDepartment>
+	<jobDesignation>Quality engineer</jobDesignation>
     <startDate>11/10/2018</startDate>
     <endDate>05/04/2019</endDate>
     <employmentStatus>Full-time</employmentStatus>

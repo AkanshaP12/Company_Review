@@ -21,6 +21,14 @@
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Job Location" VerticalAlignment="Top" Height="29" Width="250" FontSize="20"/>
                             <TextBox HorizontalAlignment="Left" Height="30" Margin="40,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20"/>
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Department" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
+                            <TextBox HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20" Margin="40, 5, 0, 0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Designation" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
+                            <TextBox HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20" Margin="40, 5, 0, 0"/>
+                        </StackPanel>
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Job Status:" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
                             <RadioButton Content="Current" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Center" FontSize="20" IsChecked="True"/>
@@ -49,10 +57,7 @@
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
                             <TextBox HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20" Margin="40, 5, 0, 0"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Department" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20" Margin="40, 5, 0, 0"/>
-                        </StackPanel>
+                        
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Skills Required for Job" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
                             <TextBox HorizontalAlignment="Left" Height="30" Margin="40,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20"/>

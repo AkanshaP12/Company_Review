@@ -87,5 +87,27 @@ namespace Company_Review
                 Lbx_companies.ItemsSource = results;
             }
         }
+
+        private void Lbx_companies_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Lbx_companies.SelectedItem != null)
+            {
+                Grd_All_Companies.Visibility = Visibility.Collapsed;
+                Grd_Company_Selected.Visibility = Visibility.Visible;
+                Stp_View_Reviews_Filters.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Grd_All_Companies.Visibility = Visibility.Visible;
+                Grd_Company_Selected.Visibility = Visibility.Collapsed;
+                Stp_View_Reviews_Filters.Visibility = Visibility.Collapsed;
+
+            }
+        }
+
+        private void Btn_Back_To_All_Companies_Click(object sender, RoutedEventArgs e)
+        {
+            Lbx_companies.SelectedItem = null;
+        }
     }
 }
