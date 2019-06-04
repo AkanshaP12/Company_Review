@@ -39,6 +39,7 @@ namespace Company_Review
 
         public MainWindow()
         {
+            //language = Properties.Settings.Default.language;
             InitializeComponent();
             this.DataContext = this;
         }

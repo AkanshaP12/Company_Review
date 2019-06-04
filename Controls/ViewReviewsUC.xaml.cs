@@ -31,10 +31,13 @@ namespace Company_Review.Controls
         public ObservableCollection<CompanyReview> companies;
         public List<CompanyOverview> companyOverviews;
         public MainWindow mainWindow;
+        public string language;
+        public List<string> cultures = new List<string> { "en english", "de detush" };
 
         public ViewReviewsUC(MainWindow mainWindow)
         {
-            string language = "de";
+
+            language = Properties.Settings.Default.language;
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
 
@@ -45,6 +48,20 @@ namespace Company_Review.Controls
             Itc_reviews.ItemsSource = companyOverviews;
             this.DataContext = this;
             this.mainWindow = mainWindow;
+            loadCultures();
+        }
+
+        private void loadCultures()
+        {
+            List<ComboBoxItem> cultureItems = new List<ComboBoxItem>();
+          foreach(string culture in cultures)
+            {
+                ComboBoxItem cb = new ComboBoxItem();
+                cb.Content = culture;
+                cultureItems.Add(cb);
+
+            }
+            Cbx_lang.ItemsSource = cultureItems;
         }
 
         private void loadFromFile()
@@ -125,6 +142,14 @@ namespace Company_Review.Controls
         private void Btn_AddReview_Click(object sender, RoutedEventArgs e)
         {
             this.mainWindow.DisplayUserControl = new AddReviewUC();
+        }
+
+        private void Cbx_lang_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string txt =((ComboBoxItem) (sender as ComboBox).SelectedItem).Content.ToString();
+            language = txt.Substring(0, 2);
+            Properties.Settings.Default.language = language;
+            Properties.Settings.Default.Save();
         }
     }
 }

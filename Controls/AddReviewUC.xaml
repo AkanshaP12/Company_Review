@@ -6,12 +6,13 @@
              xmlns:local="clr-namespace:Company_Review.Controls"
              mc:Ignorable="d" 
              >
-    <Grid Margin="10,10,0,0">
+    <Grid Margin="10,0,0,0">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="50,0,0,0">
-            <Label Content="Add Reviews" Margin="10,0,10,0" FontSize="35"/>
+            <Button x:Name="Btn_Back_To_All_Companies" Content="Back" Click="Btn_Back_To_All_Companies_Click"  Width="50" Height="20" HorizontalAlignment="Left" Margin="15,10,0,0" ></Button>
+            <Label Content="Add Reviews" Margin="10,0,10,0" FontSize="25"/>
             <TabControl TabStripPlacement="Top">
                 <TabItem Header="Job Details" FontSize="20" IsSelected="True" Width="150" Margin="-5, 0, 0, 0">
-                    <StackPanel Orientation="Vertical" Width="750" Height="500" Margin="0,40,0,0">
+                    <StackPanel Orientation="Vertical" Width="750" Height="540" Margin="0,10,0,10">
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
 
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
@@ -62,11 +63,11 @@
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Skills Required for Job" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
                             <TextBox HorizontalAlignment="Left" Height="30" Margin="40,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20"/>
                         </StackPanel>
-                        <Button Content="Next" Margin="300,30,0,0"  Height="35" Width="100"/>
+                        <Button Content="Next" Margin="270,10,0,0"  Height="30" Width="100"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Review" FontSize="20" Width="150">
-                    <StackPanel Orientation="Vertical" Height="500" Width="750" Margin="0,40,0,0">
+                    <StackPanel Orientation="Vertical" Height="540" Width="750" Margin="0,10,0,0">
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
                             <TextBox HorizontalAlignment="Left" Height="30" Margin="40,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20" ToolTip=""/>
@@ -99,10 +100,19 @@
                             <TextBox HorizontalAlignment="Left" Margin="40,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20" ToolTip="" Height="100"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
                         </StackPanel>
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Job Status:" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <RadioButton Content="Current" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Center" FontSize="20" IsChecked="True"/>
-                            <RadioButton Content="Former" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Center" FontSize="20"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Would you recommend to your friend?" VerticalAlignment="Top" Height="55" Width="250" FontSize="20"/>
+                            <RadioButton Content="Yes" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Center" FontSize="20" IsChecked="True"/>
+                            <RadioButton Content="No" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Center" FontSize="20"/>
+
                         </StackPanel>
+                        <Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="450"></ColumnDefinition>
+                                <ColumnDefinition Width="500"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="Previous" Margin="280,5,70,5" Width="95" ></Button>
+                            <Button Content="Submit Review" Margin="0,5,386,5" Width="150" HorizontalAlignment="Right" Grid.ColumnSpan="2"/>
+                        </Grid>
 
                     </StackPanel>
                 </TabItem>

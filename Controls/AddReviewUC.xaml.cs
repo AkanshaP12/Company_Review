@@ -24,6 +24,12 @@ namespace Company_Review.Controls
         {
             InitializeComponent();
             this.DataContext = this;
+
+        }
+
+        private void Btn_Back_To_All_Companies_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow back = new MainWindow();
         }
     }
 }
