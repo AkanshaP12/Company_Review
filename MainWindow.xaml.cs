@@ -1,6 +1,8 @@
-﻿using Company_Review.Controls;
+﻿using Company_Review.classes;
+using Company_Review.Controls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -20,8 +22,10 @@ namespace Company_Review
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window,  INotifyPropertyChanged
     {
+
+
         private UserControl _DisplayUserControl;
 
         public UserControl DisplayUserControl
@@ -42,7 +46,11 @@ namespace Company_Review
             //language = Properties.Settings.Default.language;
             InitializeComponent();
             this.DataContext = this;
+            
+
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string v)
         {
@@ -53,11 +61,13 @@ namespace Company_Review
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        
 
         private void W_Main_Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DisplayUserControl = new ViewReviewsUC(this);
+             DisplayUserControl = new ViewReviewsUC(this);
         }
+
+
     }
 }

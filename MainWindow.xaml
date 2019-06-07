@@ -11,4 +11,5 @@ xmlns:myControls="clrnamespace:Company_Review.usercontrols "
     <Grid>
         <ContentControl Content="{Binding DisplayUserControl}" />
     </Grid>
+
 </Window>

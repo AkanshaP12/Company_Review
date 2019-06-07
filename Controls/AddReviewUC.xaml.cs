@@ -31,5 +31,15 @@ namespace Company_Review.Controls
         {
             MainWindow back = new MainWindow();
         }
+
+        private void Dp_startDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string s = "date";
+        }
+
+        private void Dp_endDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

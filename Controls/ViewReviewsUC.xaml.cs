@@ -18,6 +18,7 @@ using Company_Review.core.Converter;
 using System.Threading;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.ComponentModel;
 
 namespace Company_Review.Controls
 {
@@ -33,13 +34,17 @@ namespace Company_Review.Controls
         public MainWindow mainWindow;
         public string language;
         public List<string> cultures = new List<string> { "en english", "de detush" };
+       
+       
+        
 
         public ViewReviewsUC(MainWindow mainWindow)
         {
-
+           
             language = Properties.Settings.Default.language;
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            
 
             InitializeComponent();
             //GenerateCompanies();
@@ -49,6 +54,8 @@ namespace Company_Review.Controls
             this.DataContext = this;
             this.mainWindow = mainWindow;
             loadCultures();
+            
+            
         }
 
         private void loadCultures()
@@ -87,6 +94,7 @@ namespace Company_Review.Controls
                 }
                 companies.Add(companyReview);
             }
+            
         }
 
         //private void GenerateCompanies()

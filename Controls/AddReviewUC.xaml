@@ -52,11 +52,12 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20" Margin="40, 5, 0, 0"/>
+
+                            <DatePicker Height="30" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40, 5, 0, 0"  x:Name="Dp_startDate" SelectedDateChanged="Dp_startDate_SelectedDateChanged"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20" Margin="40, 5, 0, 0"/>
+                            <DatePicker Height="30" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40, 5, 0, 0"  x:Name="Dp_endDate" SelectedDateChanged="Dp_endDate_SelectedDateChanged"/>
                         </StackPanel>
 
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
@@ -116,6 +117,7 @@
 
                     </StackPanel>
                 </TabItem>
+                
             </TabControl>
 
         </StackPanel>
