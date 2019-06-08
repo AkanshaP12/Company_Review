@@ -9,7 +9,6 @@
       <jobDepartment>Software development</jobDepartment>
       <jobDesignation>Software engineer</jobDesignation>
       <startDate>12/10/2018</startDate>
-      <endDate>01/04/2019</endDate>
       <employmentStatus>Full-time</employmentStatus>
       <skillsrequired>
         <skill>
@@ -47,7 +46,6 @@
     <jobDepartment>Product management</jobDepartment>
 	<jobDesignation>Team lead</jobDesignation>
     <startDate>11/10/2018</startDate>
-    <endDate>05/04/2019</endDate>
     <employmentStatus>Full-time</employmentStatus>
     <skillsrequired>
       <skill>
@@ -71,7 +69,42 @@
     <wouldYouRecommend>No</wouldYouRecommend>
   </review>
   <review>
-    <id>3</id>
+      <id>3</id>
+      <company-id>1</company-id>
+      <rating>4.0</rating>
+      <jobStatus>Former</jobStatus>
+      <jobLocation>Munich, Germany</jobLocation>
+      <jobDepartment>Business supply chain</jobDepartment>
+      <jobDesignation>Product owner</jobDesignation>
+      <startDate>10/08/2017</startDate>
+      <endDate>01/03/2019</endDate>
+      <employmentStatus>Full-time</employmentStatus>
+      <skillsrequired>
+        <skill>
+          <name>Jira</name>
+        </skill>
+        <skill>
+          <name>Excel</name>
+        </skill>
+      </skillsrequired>
+      <reviewTitle>Top employer</reviewTitle>
+      <pros>
+        <pro>
+          <comment>Very structured management</comment>
+        </pro>
+        <pro>
+          <comment>Multi cultural team, Good team chemistry.</comment>
+        </pro>
+      </pros>
+      <cons>
+        <con>
+          <comment>Not good for starters</comment>
+        </con>
+      </cons>
+      <wouldYouRecommend>Yes</wouldYouRecommend>
+    </review>
+  <review>
+    <id>4</id>
     <company-id>2</company-id>
     <rating>1</rating>
     <jobStatus>Current</jobStatus>
@@ -79,7 +112,6 @@
     <jobDepartment>Software development</jobDepartment>
 	<jobDesignation>Quality engineer</jobDesignation>
     <startDate>11/10/2018</startDate>
-    <endDate>05/04/2019</endDate>
     <employmentStatus>Full-time</employmentStatus>
     <skillsrequired>
       <skill>

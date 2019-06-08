@@ -1,4 +1,7 @@
-﻿using System.Xml.Serialization;
+﻿using Company_Review.core;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using System.Linq;
 
 namespace Company_Review.classes
 {
@@ -19,6 +22,21 @@ namespace Company_Review.classes
         [XmlIgnore]
         public string departmentName { get; set; } = "All departments";
 
-        public string logoPath { get; set; }
+        public string logoPath { get; set; } = @"..\Resources\Images\Logos\unknown.png";
+
+        public void calculateReviewStatistics(List<Review> reviews)
+        {
+            this.noOfReviews = reviews.Count;
+            if (this.noOfReviews > 0)
+            {
+                this.avgRating = (from n in reviews select float.Parse(n.rating)).Sum() / this.noOfReviews;
+            }
+
+            if (this.noOfReviews > 0)
+            {
+                this.wouldRecommended = (from n in reviews where n.wouldYouRecommend == "Yes" select n.wouldYouRecommend).Count() * 100 / this.noOfReviews;
+            }
+        }
+
     }
 }

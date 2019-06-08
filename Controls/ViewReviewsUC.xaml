@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"  Text="{x:Static resX:Resources.txt_apptitle}" FontSize="18" Margin="20,0,0,0"></TextBlock>
-            <ComboBox Grid.Column="1" x:Name="Cbx_lang" Width="60" Height="20"  SelectionChanged="Cbx_lang_SelectionChanged" Margin="5,5,5,5"></ComboBox>
+            <ComboBox Grid.Column="1" x:Name="Cbx_lang" Width="60" Height="20"  SelectionChanged="Cbx_lang_SelectionChanged" Margin="5,5,30,5"></ComboBox>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -40,9 +40,9 @@
                             <RowDefinition Height="20"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Filter for company" FontSize="15" Grid.Row="0"/>
+                        <TextBlock Text="Filter for company" FontSize="15" Grid.Row="0" Margin="20,0,0,0"/>
                         <ComboBox Grid.Row="1" IsEditable="True" Width="200" Height="25" IsTextSearchEnabled="False" x:Name="cb_companyName" 
-                  Text="{Binding comboBoxSearchText}" KeyUp="Cb_companyName_KeyUp" KeyDown="Cb_companyName_KeyDown" SelectedValuePath="companyOverview.id" SelectionChanged="Cb_companyName_SelectionChanged" DropDownOpened="Cb_companyName_DropDownOpened">
+                  Text="{Binding comboBoxSearchText}" KeyUp="Cb_companyName_KeyUp" KeyDown="Cb_companyName_KeyDown" SelectedValuePath="companyOverview.id" SelectionChanged="Cb_companyName_SelectionChanged" DropDownOpened="Cb_companyName_DropDownOpened" Margin="20,0,0,0">
                             <ComboBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <VirtualizingStackPanel />
@@ -67,8 +67,8 @@
                     </Grid>
                 </WrapPanel>
                 <StackPanel Orientation="Vertical" Margin="10,20,5,20" Grid.Row="1">
-                    <TextBlock Text="Department" FontSize="15"/>
-                    <ComboBox x:Name="Cmb_Departments" Width="200" HorizontalAlignment="Left" SelectedValuePath="departmentName">
+                    <TextBlock Text="Department" FontSize="15" Margin="20,0,0,0"/>
+                    <ComboBox x:Name="Cmb_Departments" Width="200" HorizontalAlignment="Left" SelectedValuePath="departmentName" Margin="20,0,0,0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -81,8 +81,8 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="10,20,5,20" Grid.Row="2">
-                    <TextBlock Text="Location" FontSize="15"/>
-                    <ComboBox x:Name="Cmb_Locations" Width="200" HorizontalAlignment="Left" SelectedValuePath="location">
+                    <TextBlock Text="Location" FontSize="15" Margin="20,0,0,0"/>
+                    <ComboBox x:Name="Cmb_Locations" Width="200" HorizontalAlignment="Left" SelectedValuePath="location" Margin="20,0,0,0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -96,8 +96,8 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="10,20,5,20" Grid.Row="3">
-                    <TextBlock Text="Employment Status" FontSize="15"/>
-                    <ComboBox Width="200" x:Name="Cmb_Empl_Status" HorizontalAlignment="Left">
+                    <TextBlock Text="Employment Status" FontSize="15" Margin="20,0,0,0"/>
+                    <ComboBox Width="200" x:Name="Cmb_Empl_Status" HorizontalAlignment="Left" Margin="20,0,0,0">
                         <ComboBoxItem Content="Full Time" IsSelected="True">
                         </ComboBoxItem>
                         <ComboBoxItem Content="Part Time" >
@@ -117,56 +117,138 @@
             <!-- All Companies Code starts-->
             
             <Grid Grid.Column="1" x:Name="Grd_All_Companies" Margin="5,10,10,10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60">
-                    </RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Visibility="Visible" Grid.Row="0" >
-                    <Button Name="Btn_AddReview" Margin="530,0,0,0" Width="120" Height="40"  Content="Add Review" FontSize="20" Click="Btn_AddReview_Click">
-                    </Button>
-                </StackPanel>
-                <ScrollViewer Grid.Row="1" Margin="30,0,0,0">
-                <StackPanel Orientation="Vertical"  x:Name="Stp_All_Companies">
-                    
-                    <ItemsControl Name="Itc_reviews">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0,10,0,10">
-                                    <Border Width="550" Height="Auto" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid Grid.Row="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="60"></ColumnDefinition>
-                                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                
+                <ScrollViewer Margin="30,0,0,0">
+                    <StackPanel Orientation="Vertical"  x:Name="Stp_All_Companies" Margin="0,0,20,0">
 
-                                                </Grid.ColumnDefinitions>
-                                                <Image Source="{Binding companyOverview.logoPath}" Width="50" Margin="20,0,0,0" Grid.Column="0"/>
-                                                <Grid Grid.Column="1">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="*"></RowDefinition>
-                                                        <RowDefinition Height="*"></RowDefinition>
-                                                    </Grid.RowDefinitions>
-                                                    <TextBlock Text="{Binding companyOverview.name}" FontSize="20" Margin="30,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="0"></TextBlock>
-                                                    <TextBlock Text="{Binding companyOverview.departmentName, StringFormat='Department - {0}'}" FontSize="16" Margin="30,0,0,0" VerticalAlignment="Center" Grid.Row="1"></TextBlock>
+                        <ItemsControl Name="Itc_reviews">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,10,0,10">
+                                        <Border Width="570" Height="Auto" BorderThickness="1" BorderBrush="DimGray" HorizontalAlignment="Left">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid Grid.Row="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="60"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Source="{Binding companyOverview.logoPath}" Height="40" Margin="20,0,0,0" Grid.Column="0" Width="40"/>
+                                                    <Grid Grid.Column="1">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="*"></RowDefinition>
+                                                            <RowDefinition Height="*"></RowDefinition>
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock Text="{Binding companyOverview.name}" FontSize="20" Margin="30,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="0"></TextBlock>
+                                                        <TextBlock Text="{Binding companyOverview.departmentName, StringFormat='Department - {0}'}" FontSize="16" Margin="30,0,0,0" VerticalAlignment="Center" Grid.Row="1"></TextBlock>
+                                                    </Grid>
+                                                    <TextBlock Text="{Binding companyOverview.avgRating, StringFormat='Rating {0}'}" FontSize="20" Margin="0,0,10,0" Grid.Column="2"></TextBlock>
                                                 </Grid>
-                                                <TextBlock Text="{Binding companyOverview.avgRating, StringFormat='Rating {0}'}" FontSize="20" Margin="0,0,10,0" Grid.Column="2"></TextBlock>
+                                                <TextBlock Text="{Binding companyOverview.noOfReviews, StringFormat='{}{0} reviews'}" FontSize="15" Margin="20,0,0,0" Grid.Row="1"></TextBlock>
+                                                <TextBlock Text="{Binding companyOverview.wouldRecommended, StringFormat='{}{0}% Would recommend to a friend'}" FontSize="15" Margin="20,0,0,10" Grid.Row="2"></TextBlock>
+                                                <Expander Name="Exp_ViewReviews"
+          HorizontalAlignment="Left" Header="View reviews" 
+          ExpandDirection="Down" IsExpanded="False" Width="570" Grid.Row="3" Margin="10,0,0,0">
+                                                    <!-- Single review starts -->
+                                                    <Grid HorizontalAlignment="Left" Margin="5,5,5,0" Grid.Row="4">
+                                                        <ItemsControl Name="Itc_Selected_Company_Reviews" ItemsSource="{Binding reviews}">
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Border Width="540" BorderThickness="1" BorderBrush="DimGray" Margin="0,0,0,10">
+                                                                        <Grid Margin="0,5,0,5">
+                                                                            <Grid.RowDefinitions>
+                                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                                            </Grid.RowDefinitions>
+                                                                            <Grid Grid.Row="0">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="*">
+                                                                                    </ColumnDefinition>
+                                                                                    <ColumnDefinition Width="Auto"/>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <TextBlock Text="{Binding reviewTitle}" Grid.Column="0" Margin="10,0,10,0" FontSize="20" FontWeight="Bold" Foreground="#FF194BA2"></TextBlock>
+                                                                                <TextBlock Text="{Binding rating,StringFormat='Rating {0}/5'}" Grid.Column="1" Margin="10,0,20,0" FontSize="20"></TextBlock>
+                                                                            </Grid>
+                                                                            <Grid Grid.Row="1">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <TextBlock Grid.Column="0" FontSize="13" Margin="10,0,0,0" FontStyle="Italic" Foreground="#FF958E8E">
+                                                                                    <TextBlock.Text>
+                                                                                        <MultiBinding StringFormat="{}{0} {1} Employee - ">
+                                                                                            <Binding Path="jobStatus"></Binding>
+                                                                                            <Binding Path="employmentStatus"></Binding>
+                                                                                        </MultiBinding>
+                                                                                    </TextBlock.Text>
+                                                                                </TextBlock>
+                                                                                <TextBlock Text="{Binding jobLocation, StringFormat='at {0}'}" FontSize="13" Margin="0,0,10,0" FontStyle="Italic" Grid.Column="1" Foreground="#FF958E8E"></TextBlock>
+                                                                            </Grid>
+                                                                            <Grid Grid.Row="2">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <TextBlock Text="{Binding jobDesignation, StringFormat='As {0}'}" Grid.Column="0" FontSize="13" FontStyle="Italic" Margin="10,0,0,0" Foreground="#FF958E8E"></TextBlock>
+                                                                                <TextBlock Text="{Binding jobDepartment, StringFormat=' in {0} department'}" FontStyle="Italic" Grid.Column="1" FontSize="13" Margin="0,0,10,0" Foreground="#FF958E8E" ForceCursor="True"/>
+                                                                            </Grid>
+                                                                            <Grid Grid.Row="3">
+                                                                                <TextBlock Text="{Binding skillsAsString}" FontSize="15" Margin="10,0,10,0"></TextBlock>
+                                                                            </Grid>
+                                                                            <Grid Grid.Row="4">
+                                                                                <TextBlock Text="Pros" FontSize="15" Margin="10,0,10,0" Foreground="#FFA0F387" FontWeight="Bold"></TextBlock>
+                                                                            </Grid>
+                                                                            <Grid Grid.Row="5">
+                                                                                <ItemsControl ItemsSource="{Binding pros.pros}">
+                                                                                    <ItemsControl.ItemTemplate>
+                                                                                        <DataTemplate>
+                                                                                            <TextBlock Text="{Binding comment, StringFormat='• {0}'}" FontSize="15" Margin="25,0,10,0"></TextBlock>
+                                                                                        </DataTemplate>
+                                                                                    </ItemsControl.ItemTemplate>
+                                                                                </ItemsControl>
+
+                                                                            </Grid>
+                                                                            <Grid Grid.Row="6">
+                                                                                <TextBlock Text="Cons" FontSize="15" Margin="10,0,10,0" Foreground="#FFF17F65" FontWeight="Bold"></TextBlock>
+                                                                            </Grid>
+                                                                            <Grid Grid.Row="7">
+                                                                                <ItemsControl ItemsSource="{Binding cons.cons}">
+                                                                                    <ItemsControl.ItemTemplate>
+                                                                                        <DataTemplate>
+                                                                                            <TextBlock Text="{Binding comment, StringFormat='• {0}'}" FontSize="15" Margin="25,0,10,0"></TextBlock>
+                                                                                        </DataTemplate>
+                                                                                    </ItemsControl.ItemTemplate>
+                                                                                </ItemsControl>
+                                                                            </Grid>
+                                                                        </Grid>
+                                                                    </Border>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                    </Grid>
+                                                    <!-- Single review ends -->
+                                                </Expander>
+
                                             </Grid>
-                                            <TextBlock Text="{Binding companyOverview.noOfReviews, StringFormat='{}{0} reviews'}" FontSize="15" Margin="20,0,0,0" Grid.Row="1"></TextBlock>
-                                            <TextBlock Text="{Binding companyOverview.wouldRecommended, StringFormat='{}{0}% Would recommend to a friend'}" FontSize="15" Margin="20,0,0,10" Grid.Row="2"></TextBlock>
-                                        </Grid>
-                                    </Border>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
                 </ScrollViewer>
             </Grid>
             <!-- All Companies Code Ends-->
