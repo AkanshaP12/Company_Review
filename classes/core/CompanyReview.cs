@@ -13,5 +13,13 @@ namespace Company_Review.classes
 
         public List<Review> reviews { get; set; }
 
+        public override string ToString()
+        {
+            if(companyOverview == null)
+            {
+                return "";
+            }
+            return companyOverview.name;
+        }
     }
 }

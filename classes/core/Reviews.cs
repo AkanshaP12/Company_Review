@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -103,5 +104,70 @@ namespace Company_Review.core
     public class Con
     {
         public string comment { get; set; }
+    }
+
+
+    public class JobDepartment : INotifyPropertyChanged
+    {
+        public string departmentName { get; set; }
+
+        private bool isSelected_ { get; set; }
+
+        public bool isSelected
+        {
+            get
+            {
+                return isSelected_;
+            }
+
+            set
+            {
+                isSelected_ = value;
+                OnPropertyChanged("isSelected");
+            }
+        }
+
+        private void OnPropertyChanged(string v)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(v));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+
+    public class JobLocation : INotifyPropertyChanged
+    {
+        public string location { get; set; }
+
+        private bool isSelected_ { get; set; }
+
+        public bool isSelected
+        {
+            get
+            {
+                return isSelected_;
+            }
+
+            set
+            {
+                isSelected_ = value;
+                OnPropertyChanged("isSelected");
+            }
+        }
+
+        private void OnPropertyChanged(string v)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(v));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

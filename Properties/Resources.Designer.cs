@@ -70,7 +70,7 @@ namespace Company_Review.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Student Work Placement 1.
+        ///   Looks up a localized string similar to Student Work Placement Review.
         /// </summary>
         public static string txt_apptitle {
             get {
