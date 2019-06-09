@@ -22,6 +22,9 @@ namespace Company_Review.core
         [XmlElement("company-id")]
         public int companyId { get; set; }
 
+        [XmlIgnore]
+        public string companyName { get; set; }
+
         //static CultureInfo ci = CultureInfo.InvariantCulture;
         //[XmlIgnore]
         //float _ratings = 0;
@@ -42,10 +45,53 @@ namespace Company_Review.core
         public string jobDepartment { get; set; }
         public string jobDesignation { get; set; }
         public string startDate { get; set; }
+        
+        [XmlIgnore]
+        public DateTime startDateTime
+        {
+            get
+            {
+                if(String.IsNullOrEmpty(startDate))
+                {
+                    return DateTime.Now;
+                }
+
+                string[] items = startDate.Split('/'); 
+                return new DateTime(Int32.Parse(items[2]), Int32.Parse(items[1]), Int32.Parse(items[0]));
+            }
+            set
+            {
+                startDate = "" + value.Day + "/" +  value.Month + "/" + value.Year;
+            }
+        }
+
         public string endDate { get; set; }
+
+        [XmlIgnore]
+        public DateTime endDateTime
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(endDate))
+                {
+                    return DateTime.Now;
+                }
+                string[] items = endDate.Split('/');
+                return new DateTime(Int32.Parse(items[2]), Int32.Parse(items[1]), Int32.Parse(items[0]));
+            }
+            set
+            {
+                
+                endDate = "" + value.Day + "/" + value.Month + "/" + value.Year;
+            }
+        }
+
         public string employmentStatus { get; set; }
         [XmlElement("skillsrequired")]
         public SkillRequired skillRequired { get; set; }
+
+        [XmlIgnore]
+        public string skillsForInput { get; set; }
 
         [XmlIgnore]
         public string skillsAsString
@@ -69,8 +115,37 @@ namespace Company_Review.core
         }
         public string reviewTitle { get; set; }
         public Pros pros { get; set; }
+
+        [XmlIgnore]
+        public string prosAsString { get; set; }
+
         public Cons cons { get; set; }
+
+        [XmlIgnore]
+        public string consAsString { get; set; }
         public string wouldYouRecommend { get; set; }
+
+        [XmlIgnore]
+        public DateTime postedOnDateTime
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(postedDate))
+                {
+                    return DateTime.Now;
+                }
+
+                string[] items = postedDate.Split('/');
+                return new DateTime(Int32.Parse(items[2]), Int32.Parse(items[1]), Int32.Parse(items[0]));
+            }
+            set
+            {
+                postedDate = "" + value.Day + "/" + value.Month + "/" + value.Year;
+            }
+        }
+
+        public string postedDate { get; set; }
+
     }
 
     public class SkillRequired

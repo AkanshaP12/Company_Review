@@ -121,9 +121,9 @@
     <value>LeftToRight</value>
   </data>
   <data name="txt_apptitle" xml:space="preserve">
-    <value>Student Work Placement Review</value>
+    <value>View Reviews</value>
   </data>
   <data name="txt_viewReviews" xml:space="preserve">
-    <value>View Reviews</value>
+    <value />
   </data>
 </root>

@@ -100,6 +100,11 @@ namespace Company_Review.Controls
         private void loadFromFile()
         {
             companiesFromFile = XMLSerializerWrapper.ReadXml<Companies>("data\\companies.xml");
+
+            int highestCompanyId = (from n in companiesFromFile.companyDetails select n).OrderByDescending(x => x.id).ToList()[0].id;
+            Properties.Settings.Default.next_company_id = highestCompanyId + 1;
+            Properties.Settings.Default.Save();
+
             reviews = XMLSerializerWrapper.ReadXml<Reviews>("data\\reviews.xml");
 
             companyReviewFilter = new CompanyReviewFilter(companiesFromFile, reviews.reviews);
@@ -112,7 +117,7 @@ namespace Company_Review.Controls
 
         private void Btn_AddReview_Click(object sender, RoutedEventArgs e)
         {
-            this.mainWindow.DisplayUserControl = new AddReviewUC();
+            this.mainWindow.DisplayUserControl = new AddReviewUC(mainWindow);
         }
 
         private void Cbx_lang_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -365,6 +370,11 @@ namespace Company_Review.Controls
             }
 
             Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+        }
+
+        private void Btn_AddReview_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
