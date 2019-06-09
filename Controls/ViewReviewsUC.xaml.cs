@@ -19,6 +19,7 @@ using System.Threading;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.ComponentModel;
+using Company_Review.classes.core;
 
 namespace Company_Review.Controls
 {
@@ -29,11 +30,8 @@ namespace Company_Review.Controls
     /// </summary>
     public partial class ViewReviewsUC : UserControl, INotifyPropertyChanged
     {
-        public ObservableCollection<CompanyReview> companies;
-        public ObservableCollection<CompanyReview> singleCompanyItems;
-        public ObservableCollection<CompanyReview> companiesInTransit;
+        public CompanyReviewFilter companyReviewFilter;
         public ObservableCollection<CompanyReview> companiesForComboBox;
-        private List<CompanyOverview> companyOverviewsFromFile;
         public MainWindow mainWindow;
         public string language;
         public List<string> cultures = new List<string> { "en english", "de detush" };
@@ -41,10 +39,12 @@ namespace Company_Review.Controls
 
         public List<JobLocation> jobLocations { get; set; } = new List<JobLocation>();
         private bool handleDepartmentSelection = true;
+        private bool handleLocationSelection = true;
 
         private string comboBoxSearchText_;
 
         private Reviews reviews;
+        private Companies companiesFromFile;
 
         private bool isLocationApplied = false;
         private bool isDepartmentApplied = false;
@@ -71,15 +71,17 @@ namespace Company_Review.Controls
             InitializeComponent();
             //GenerateCompanies();
             loadFromFile();
-            companiesInTransit = companies;
+            loadCultures();
+
             //Lbx_companies.ItemsSource = companies;
-            Itc_reviews.ItemsSource = companiesInTransit;
+            ObservableCollection<CompanyReview> filteredCompanies = companyReviewFilter.filterByCriteria();
+            Itc_reviews.ItemsSource = filteredCompanies;
             this.DataContext = this;
             this.mainWindow = mainWindow;
-            loadCultures();
-            companiesForComboBox = new ObservableCollection<CompanyReview>(from n in companies where n.companyOverview.departmentName == "All departments" select n);
+            companiesForComboBox = new ObservableCollection<CompanyReview>(from n in filteredCompanies where n.companyOverview.departmentName == "All departments" select n);
             cb_companyName.ItemsSource = companiesForComboBox;
-            Grd_Company_Selected.Visibility = Visibility.Collapsed;
+
+            populateDepartmentsAndLocations(null);
         }
 
         private void loadCultures()
@@ -97,40 +99,10 @@ namespace Company_Review.Controls
 
         private void loadFromFile()
         {
-            Companies companiesFromFile = XMLSerializerWrapper.ReadXml<Companies>("data\\companies.xml");
-            companyOverviewsFromFile = companiesFromFile.companyDetails;
-            companies = new ObservableCollection<CompanyReview>();
+            companiesFromFile = XMLSerializerWrapper.ReadXml<Companies>("data\\companies.xml");
             reviews = XMLSerializerWrapper.ReadXml<Reviews>("data\\reviews.xml");
-            foreach (CompanyOverview companyOverview in companyOverviewsFromFile)
-            {
-                collectCompanyReviews(companyOverview, reviews.reviews, companies);
-            }
-        }
 
-        private void collectCompanyReviews(CompanyOverview companyOverview, List<Review> reviews,ObservableCollection<CompanyReview> targetCollection)
-        {
-            CompanyReview companyReview = new CompanyReview();
-            companyReview.companyOverview = companyOverview;
-            companyReview.reviews = (from n in reviews where n.companyId == companyOverview.id select n).ToList();
-            companyOverview.calculateReviewStatistics(companyReview.reviews);
-            targetCollection.Add(companyReview);
-
-            List<IGrouping<string, Review>> reviewsByDepartment = (from n in companyReview.reviews group n by n.jobDepartment into d select d).ToList();
-            foreach (IGrouping<string, Review> groupedReviews in reviewsByDepartment)
-            {
-                CompanyReview companyReviewByDepartment = new CompanyReview();
-                CompanyOverview companyOverviewByDepartment = new CompanyOverview();
-                companyOverviewByDepartment.id = companyOverview.id;
-                companyOverviewByDepartment.name = companyOverview.name;
-                companyOverviewByDepartment.logoPath = companyOverview.logoPath;
-                companyOverviewByDepartment.departmentName = groupedReviews.Key;
-
-                companyReviewByDepartment.reviews = groupedReviews.ToList();
-
-                companyOverviewByDepartment.calculateReviewStatistics(companyReviewByDepartment.reviews);
-                companyReviewByDepartment.companyOverview = companyOverviewByDepartment;
-                targetCollection.Add(companyReviewByDepartment);
-            }
+            companyReviewFilter = new CompanyReviewFilter(companiesFromFile, reviews.reviews);
         }
 
         private void Btn_Back_To_All_Companies_Click(object sender, RoutedEventArgs e)
@@ -192,35 +164,53 @@ namespace Company_Review.Controls
                 CompanyReview companyReview = (CompanyReview)companyComboBox.SelectedItem;
                 if(companyReview.reviews != null)
                 {
-                    List<string> allCompanyReviewedDepartments = new List<string> { "Select all" };
-                    allCompanyReviewedDepartments.AddRange((from n in companyReview.reviews select n.jobDepartment).Distinct().OrderBy(x => x).ToList());
-                    if(allCompanyReviewedDepartments.Count > 0)
-                    {
-                        foreach(string department in allCompanyReviewedDepartments)
-                        {
-                            JobDepartment jobDepartment = new JobDepartment { departmentName = department, isSelected = true };
-                            jobDepartments.Add(jobDepartment);
-                        }
-                        Cmb_Departments.ItemsSource = jobDepartments;
-                    }
-
-                    List<string> allCompanyReviewedLocations = new List<string> { "Select all" };
-                    allCompanyReviewedLocations.AddRange((from n in companyReview.reviews select n.jobLocation).Distinct().OrderBy(x => x).ToList());
-                    if(allCompanyReviewedLocations.Count >0)
-                    {
-                        foreach(string location in allCompanyReviewedLocations)
-                        {
-                            JobLocation jobLocation = new JobLocation { location = location, isSelected = true };
-                            jobLocations.Add(jobLocation);
-                        }
-                    }
-                    Cmb_Locations.ItemsSource = jobLocations;
+                    populateDepartmentsAndLocations(companyReview);
 
                     //load selected company items
-                    singleCompanyItems = new ObservableCollection<CompanyReview>(from n in companies where n.companyOverview.id == companyReview.companyOverview.id select n);
-                    Itc_reviews.ItemsSource = singleCompanyItems;
+                    companyReviewFilter.setCompanyId(companyReview.companyOverview.id);
+                    Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
                 }
             }
+        }
+
+        private void populateDepartmentsAndLocations(CompanyReview companyReview)
+        {
+            List<string> allCompanyReviewedDepartments = new List<string> { "Select all" };
+            List<string> allCompanyReviewedLocations = new List<string> { "Select all" };
+            List<Review> reviewsForDL;
+            if (companyReview != null)
+            {
+                reviewsForDL = companyReview.reviews;
+            }
+            else
+            {
+                reviewsForDL = reviews.reviews;
+            }
+
+            allCompanyReviewedDepartments.AddRange((from n in reviewsForDL select n.jobDepartment).Distinct().OrderBy(x => x).ToList());
+            jobDepartments  = new List<JobDepartment>();
+            if (allCompanyReviewedDepartments.Count > 0)
+            {
+                foreach (string department in allCompanyReviewedDepartments)
+                {
+                    JobDepartment jobDepartment = new JobDepartment { departmentName = department, isSelected = true };
+                    jobDepartments.Add(jobDepartment);
+                }
+            }
+            Cmb_Departments.ItemsSource = jobDepartments;
+
+
+            allCompanyReviewedLocations.AddRange((from n in reviewsForDL select n.jobLocation).Distinct().OrderBy(x => x).ToList());
+            jobLocations = new List<JobLocation>();
+            if (allCompanyReviewedLocations.Count > 0)
+            {
+                foreach (string location in allCompanyReviewedLocations)
+                {
+                    JobLocation jobLocation = new JobLocation { location = location, isSelected = true };
+                    jobLocations.Add(jobLocation);
+                }
+            }
+            Cmb_Locations.ItemsSource = jobLocations;
         }
 
         private void Cb_companyName_DropDownOpened(object sender, EventArgs e)
@@ -245,6 +235,8 @@ namespace Company_Review.Controls
             CheckBox selectedCheckBox = sender as CheckBox;
             if (handleDepartmentSelection)
             {
+                JobDepartment selectedJobDepartment = (JobDepartment)selectedCheckBox.DataContext;
+                companyReviewFilter.removeDepartment(selectedJobDepartment.departmentName);
                 handleDepartmentSelection = false;
                 handleDepartmentCheckbox(selectedCheckBox);
                 handleDepartmentSelection = true;
@@ -282,66 +274,46 @@ namespace Company_Review.Controls
                 selectAllDepartment.isSelected = true;
             }
 
-            List<string> filterDepartments = new List<string>();
-            bool isAnyDepartmentSelected = false;
             foreach (JobDepartment department in jobDepartments)
             {
                 if(department.isSelected == true)
                 {
-                    isAnyDepartmentSelected = true;
                     if (department.departmentName == "Select all")
                     {
-                        filterDepartments.Add("All departments");
+                        companyReviewFilter.addDepartment("All departments");
+                        break;
                     }
                     else
                     {
-                        filterDepartments.Add(department.departmentName);
+                        companyReviewFilter.addDepartment(department.departmentName);
                     }
                 }
             }
-
-            if(isAnyDepartmentSelected)
-            {
-                isDepartmentApplied = true;
-                if(isLocationApplied == true)
-                {
-                    //load selected departments
-                    companiesInTransit = new ObservableCollection<CompanyReview>(from n in companiesInTransit where filterDepartments.Contains(n.companyOverview.departmentName) select n);
-                    Itc_reviews.ItemsSource = companiesInTransit;
-                }
-                else
-                {
-                    //load selected departments
-                    companiesInTransit = new ObservableCollection<CompanyReview>(from n in singleCompanyItems where filterDepartments.Contains(n.companyOverview.departmentName) select n);
-                    Itc_reviews.ItemsSource = companiesInTransit;
-                }
-            }
-            else
-            {
-                isDepartmentApplied = false;
-                if (isLocationApplied == true)
-                {
-                    //load selected departments
-                    Itc_reviews.ItemsSource = new ObservableCollection<CompanyReview>(from n in companiesInTransit where n.companyOverview.departmentName == "All departments" select n);
-                }
-                else
-                {
-                    //load selected departments
-                    Itc_reviews.ItemsSource = new ObservableCollection<CompanyReview>(from n in singleCompanyItems where n.companyOverview.departmentName == "All departments" select n);
-                }
-            }
+            Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
         }
 
         private void Cbx_location_selection_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox selectedCheckBox = sender as CheckBox;
-            handleLocationCheckbox(selectedCheckBox);
+            if(handleLocationSelection)
+            {
+                handleLocationSelection = false;
+                handleLocationCheckbox(selectedCheckBox);
+                handleLocationSelection = true;
+            }
         }
 
         private void Cbx_location_selection_Unchecked(object sender, RoutedEventArgs e)
         {
             CheckBox selectedCheckBox = sender as CheckBox;
-            handleLocationCheckbox(selectedCheckBox);
+            if (handleLocationSelection)
+            {
+                JobLocation selectedJobLocation = (JobLocation)selectedCheckBox.DataContext;
+                companyReviewFilter.removeLocation(selectedJobLocation.location);
+                handleLocationSelection = false;
+                handleLocationCheckbox(selectedCheckBox);
+                handleLocationSelection = true;
+            }
         }
 
         private void handleLocationCheckbox(CheckBox selectedCheckBox)
@@ -369,20 +341,18 @@ namespace Company_Review.Controls
                 }
             }
 
-            List<string> filterLocations = new List<string>();
-            bool isAnyLocationSelected = false;
             foreach (JobLocation location in jobLocations)
             {
                 if (location.isSelected == true)
                 {
-                    isAnyLocationSelected = true;
                     if (location.location == "Select all")
                     {
-                        filterLocations.Add("All locations");
+                        companyReviewFilter.addLocation("All locations");
+                        break;
                     }
                     else
                     {
-                        filterLocations.Add(location.location);
+                        companyReviewFilter.addLocation(location.location);
                     }
                 }
             }
@@ -394,37 +364,7 @@ namespace Company_Review.Controls
                 selectAllLocation.isSelected = true;
             }
 
-            List<Review> reviewsByLocations;
-            if (isAnyLocationSelected)
-            {
-                isLocationApplied = true;
-                reviewsByLocations = (from n in reviews.reviews where filterLocations.Contains(n.jobLocation) select n).ToList();
-            }
-            else
-            {
-                isLocationApplied = false;
-                reviewsByLocations = (from n in reviews.reviews select n).ToList();
-            }
-
-            ObservableCollection<CompanyReview> companyReviewsByLocation = new ObservableCollection<CompanyReview>();
-            ObservableCollection<CompanyReview> forFilter;
-            if (isDepartmentApplied)
-            {
-                forFilter = companiesInTransit;
-            }
-            else
-            {
-                forFilter = singleCompanyItems;
-            }
-            foreach(CompanyReview companyReview in forFilter)
-            {
-                if(companyReview.companyOverview.departmentName == "All departments")
-                {
-                    collectCompanyReviews(companyReview.companyOverview, reviewsByLocations, companyReviewsByLocation);
-                }
-            }
-            companiesInTransit = companyReviewsByLocation;
-            Itc_reviews.ItemsSource = companiesInTransit;
+            Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
         }
     }
 
