@@ -179,7 +179,7 @@
                                                                                     </ColumnDefinition>
                                                                                     <ColumnDefinition Width="Auto"/>
                                                                                 </Grid.ColumnDefinitions>
-                                                                                <TextBlock Text="{Binding reviewTitle}" Grid.Column="0" Margin="10,0,10,0" FontSize="20" FontWeight="Bold" Foreground="#FF194BA2"></TextBlock>
+                                                                                <TextBlock Text="{Binding reviewTitle}" Grid.Column="0" Margin="10,0,10,0" FontSize="20" FontWeight="Bold" Foreground="#FF194BA2" TextWrapping="Wrap"></TextBlock>
                                                                                 <TextBlock Text="{Binding rating,StringFormat='Rating {0}/5'}" Grid.Column="1" Margin="10,0,20,0" FontSize="20"></TextBlock>
                                                                             </Grid>
                                                                             <Grid Grid.Row="1">
@@ -215,7 +215,7 @@
                                                                                 <ItemsControl ItemsSource="{Binding pros.pros}">
                                                                                     <ItemsControl.ItemTemplate>
                                                                                         <DataTemplate>
-                                                                                            <TextBlock Text="{Binding comment, StringFormat='• {0}'}" FontSize="15" Margin="25,0,10,0"></TextBlock>
+                                                                                            <TextBlock Text="{Binding comment, StringFormat='• {0}'}" FontSize="15" Margin="25,0,10,0" TextWrapping="Wrap"></TextBlock>
                                                                                         </DataTemplate>
                                                                                     </ItemsControl.ItemTemplate>
                                                                                 </ItemsControl>
@@ -228,7 +228,7 @@
                                                                                 <ItemsControl ItemsSource="{Binding cons.cons}">
                                                                                     <ItemsControl.ItemTemplate>
                                                                                         <DataTemplate>
-                                                                                            <TextBlock Text="{Binding comment, StringFormat='• {0}'}" FontSize="15" Margin="25,0,10,0"></TextBlock>
+                                                                                            <TextBlock Text="{Binding comment, StringFormat='• {0}'}" FontSize="15" Margin="25,0,10,0" TextWrapping="Wrap"></TextBlock>
                                                                                         </DataTemplate>
                                                                                     </ItemsControl.ItemTemplate>
                                                                                 </ItemsControl>

@@ -15,4 +15,8 @@
       <name>BaSF</name>
       <logoPath>..\Resources\Images\Logos\basf.png</logoPath>
     </company>
+	<company>
+      <id>4</id>
+      <name>Heidelberg Cement</name>
+    </company>
 </companyDetails>

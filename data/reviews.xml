@@ -104,7 +104,69 @@
       <wouldYouRecommend>Yes</wouldYouRecommend>
     </review>
   <review>
-    <id>4</id>
+  <id>4</id>
+      <company-id>1</company-id>
+      <rating>4.0</rating>
+      <jobStatus>Current</jobStatus>
+      <jobLocation>Waldorf, Germany</jobLocation>
+      <jobDepartment>Human Resources</jobDepartment>
+      <jobDesignation>Human Resources Associate</jobDesignation>
+      <startDate>17/10/2016</startDate>
+      <employmentStatus>Full-time</employmentStatus>
+      <skillsrequired>
+        <skill>
+          <name>Communication</name>
+        </skill>
+        <skill>
+          <name>Decision Making</name>
+        </skill>
+      </skillsrequired>
+      <reviewTitle>Wonderful employer with future</reviewTitle>
+      <pros>
+        <pro>
+          <comment>Future Prospects Benefits Work Life Balance Employee Offers Home Office Opportunities</comment>
+        </pro>
+      </pros>
+      <cons>
+        <con>
+          <comment>Parking situation could be improved, gym could tolerate an update</comment>
+        </con>
+      </cons>
+      <wouldYouRecommend>Yes</wouldYouRecommend>
+    </review>
+  <review>
+  <id>5</id>
+      <company-id>1</company-id>
+      <rating>2.0</rating>
+      <jobStatus>Current</jobStatus>
+      <jobLocation>St. Leon-Rot, Germany</jobLocation>
+      <jobDepartment>Software development</jobDepartment>
+      <jobDesignation>Support Engineer</jobDesignation>
+      <startDate>17/10/2016</startDate>
+      <employmentStatus>Full-time</employmentStatus>
+      <skillsrequired>
+        <skill>
+          <name>SAP ABAP</name>
+        </skill>
+        <skill>
+          <name>Python</name>
+        </skill>
+      </skillsrequired>
+      <reviewTitle>Company good Management not</reviewTitle>
+      <pros>
+        <pro>
+          <comment>Good general conditions very good social benefits a lot of variety in the job</comment>
+        </pro>
+      </pros>
+      <cons>
+        <con>
+          <comment>"Managers" do not act objectively but according to their own emotions.People are sold to customers with half knowledge and slides as experts. Minority promotion stands above the performance</comment>
+        </con>
+      </cons>
+      <wouldYouRecommend>No</wouldYouRecommend>
+    </review>
+  <review>
+    <id>6</id>
     <company-id>2</company-id>
     <rating>1</rating>
     <jobStatus>Current</jobStatus>
@@ -133,5 +195,39 @@
       </con>
     </cons>
     <wouldYouRecommend>No</wouldYouRecommend>
+  </review>
+  <review>
+  <id>7</id>
+    <company-id>4</company-id>
+    <rating>1</rating>
+    <jobStatus>Current</jobStatus>
+    <jobLocation>Wiesloch, Germany</jobLocation>
+    <jobDepartment>Manufacturing</jobDepartment>
+	<jobDesignation>Mechatronics Technician</jobDesignation>
+    <startDate>12/9/2017</startDate>
+    <employmentStatus>Full-time</employmentStatus>
+    <skillsrequired>
+      <skill>
+        <name>Trouble shooting</name>
+      </skill>
+      <skill>
+        <name>Critial thinking</name>
+      </skill>
+    </skillsrequired>
+    <reviewTitle>Training with a future</reviewTitle>
+    <pros>
+      <pro>
+        <comment>The training is practiced with fun, yet purposeful. The instructors always have an open ear, whether in the professional or private sector.</comment>
+      </pro>
+	  <pro>
+		<comment>The compensation is also so high that you can live very well with it.</comment>
+	  </pro>
+    </pros>
+    <cons>
+      <con>
+        <comment>It is a bit chaotic at the moment, because a new structuring is going on, which is not easy at the moment, but which will improve over time.</comment>
+      </con>
+    </cons>
+    <wouldYouRecommend>Yes</wouldYouRecommend>
   </review>
 </userReviews>

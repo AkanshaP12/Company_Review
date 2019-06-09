@@ -30,6 +30,7 @@ namespace Company_Review.Controls
     public partial class ViewReviewsUC : UserControl, INotifyPropertyChanged
     {
         public ObservableCollection<CompanyReview> companies;
+        public ObservableCollection<CompanyReview> singleCompanyItems;
         public ObservableCollection<CompanyReview> companiesInTransit;
         public ObservableCollection<CompanyReview> companiesForComboBox;
         private List<CompanyOverview> companyOverviewsFromFile;
@@ -44,6 +45,9 @@ namespace Company_Review.Controls
         private string comboBoxSearchText_;
 
         private Reviews reviews;
+
+        private bool isLocationApplied = false;
+        private bool isDepartmentApplied = false;
 
         public string comboBoxSearchText
         {
@@ -213,8 +217,8 @@ namespace Company_Review.Controls
                     Cmb_Locations.ItemsSource = jobLocations;
 
                     //load selected company items
-                    companiesInTransit = new ObservableCollection<CompanyReview>(from n in companiesInTransit where n.companyOverview.id == companyReview.companyOverview.id select n);
-                    Itc_reviews.ItemsSource = companiesInTransit;
+                    singleCompanyItems = new ObservableCollection<CompanyReview>(from n in companies where n.companyOverview.id == companyReview.companyOverview.id select n);
+                    Itc_reviews.ItemsSource = singleCompanyItems;
                 }
             }
         }
@@ -298,13 +302,33 @@ namespace Company_Review.Controls
 
             if(isAnyDepartmentSelected)
             {
-                //load selected departments
-                Itc_reviews.ItemsSource = new ObservableCollection<CompanyReview>(from n in companiesInTransit where filterDepartments.Contains(n.companyOverview.departmentName) select n);
+                isDepartmentApplied = true;
+                if(isLocationApplied == true)
+                {
+                    //load selected departments
+                    companiesInTransit = new ObservableCollection<CompanyReview>(from n in companiesInTransit where filterDepartments.Contains(n.companyOverview.departmentName) select n);
+                    Itc_reviews.ItemsSource = companiesInTransit;
+                }
+                else
+                {
+                    //load selected departments
+                    companiesInTransit = new ObservableCollection<CompanyReview>(from n in singleCompanyItems where filterDepartments.Contains(n.companyOverview.departmentName) select n);
+                    Itc_reviews.ItemsSource = companiesInTransit;
+                }
             }
             else
             {
-                //load selected departments
-                Itc_reviews.ItemsSource = new ObservableCollection<CompanyReview>(from n in companiesInTransit where n.companyOverview.departmentName == "All departments" select n);
+                isDepartmentApplied = false;
+                if (isLocationApplied == true)
+                {
+                    //load selected departments
+                    Itc_reviews.ItemsSource = new ObservableCollection<CompanyReview>(from n in companiesInTransit where n.companyOverview.departmentName == "All departments" select n);
+                }
+                else
+                {
+                    //load selected departments
+                    Itc_reviews.ItemsSource = new ObservableCollection<CompanyReview>(from n in singleCompanyItems where n.companyOverview.departmentName == "All departments" select n);
+                }
             }
         }
 
@@ -373,16 +397,26 @@ namespace Company_Review.Controls
             List<Review> reviewsByLocations;
             if (isAnyLocationSelected)
             {
+                isLocationApplied = true;
                 reviewsByLocations = (from n in reviews.reviews where filterLocations.Contains(n.jobLocation) select n).ToList();
-
             }
             else
             {
+                isLocationApplied = false;
                 reviewsByLocations = (from n in reviews.reviews select n).ToList();
             }
 
             ObservableCollection<CompanyReview> companyReviewsByLocation = new ObservableCollection<CompanyReview>();
-            foreach(CompanyReview companyReview in companiesInTransit)
+            ObservableCollection<CompanyReview> forFilter;
+            if (isDepartmentApplied)
+            {
+                forFilter = companiesInTransit;
+            }
+            else
+            {
+                forFilter = singleCompanyItems;
+            }
+            foreach(CompanyReview companyReview in forFilter)
             {
                 if(companyReview.companyOverview.departmentName == "All departments")
                 {
