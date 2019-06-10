@@ -76,7 +76,8 @@ namespace Company_Review.Controls
 
         private void validateInputs()
         {
-            
+            currentReview.postedOnDateTime = DateTime.Now;
+
             if (currentReview == null)
             {
                 MessageBox.Show("Company review not provided.");
@@ -142,6 +143,7 @@ namespace Company_Review.Controls
                 currentReview.wouldYouRecommend = "No";
             }
 
+            
         }
 
         private void populatePros()
@@ -229,6 +231,10 @@ namespace Company_Review.Controls
             }
 
             Reviews reviews = XMLSerializerWrapper.ReadXml<Reviews>("data\\reviews.xml");
+
+            currentReview.id = Properties.Settings.Default.next_company_id;
+            Properties.Settings.Default.next_company_id = Properties.Settings.Default.next_company_id + 1;
+            Properties.Settings.Default.Save();
             reviews.reviews.Add(currentReview);
             XMLSerializerWrapper.WriteXml<Reviews>(reviews, "data\\reviews.xml");
             MessageBox.Show("Review added successfully");

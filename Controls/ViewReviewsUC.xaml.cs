@@ -46,9 +46,6 @@ namespace Company_Review.Controls
         private Reviews reviews;
         private Companies companiesFromFile;
 
-        private bool isLocationApplied = false;
-        private bool isDepartmentApplied = false;
-
         public string comboBoxSearchText
         {
             get { return comboBoxSearchText_; }
@@ -67,8 +64,12 @@ namespace Company_Review.Controls
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
 
-
             InitializeComponent();
+            this.mainWindow = mainWindow;
+        }
+
+        private void UC_View_Reviews_Loaded(object sender, RoutedEventArgs e)
+        {
             //GenerateCompanies();
             loadFromFile();
             loadCultures();
@@ -77,11 +78,12 @@ namespace Company_Review.Controls
             ObservableCollection<CompanyReview> filteredCompanies = companyReviewFilter.filterByCriteria();
             Itc_reviews.ItemsSource = filteredCompanies;
             this.DataContext = this;
-            this.mainWindow = mainWindow;
+            
             companiesForComboBox = new ObservableCollection<CompanyReview>(from n in filteredCompanies where n.companyOverview.departmentName == "All departments" select n);
             cb_companyName.ItemsSource = companiesForComboBox;
 
             populateDepartmentsAndLocations(null);
+            Cmb_Empl_Status.SelectedValue = "All status";
         }
 
         private void loadCultures()
@@ -94,7 +96,7 @@ namespace Company_Review.Controls
                 cultureItems.Add(cb);
 
             }
-            Cbx_lang.ItemsSource = cultureItems;
+            //Cbx_lang.ItemsSource = cultureItems;
         }
 
         private void loadFromFile()
@@ -106,6 +108,10 @@ namespace Company_Review.Controls
             Properties.Settings.Default.Save();
 
             reviews = XMLSerializerWrapper.ReadXml<Reviews>("data\\reviews.xml");
+
+            int highestReviewId = (from n in reviews.reviews select n).OrderByDescending(x => x.id).ToList()[0].id;
+            Properties.Settings.Default.next_review_id = highestReviewId + 1;
+            Properties.Settings.Default.Save();
 
             companyReviewFilter = new CompanyReviewFilter(companiesFromFile, reviews.reviews);
         }
@@ -372,10 +378,28 @@ namespace Company_Review.Controls
             Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
         }
 
-        private void Btn_AddReview_Click_1(object sender, RoutedEventArgs e)
+        private void Cmb_Empl_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ComboBox empStatusCB = (ComboBox)sender;
+            companyReviewFilter.addEmpStatusFilter((string)empStatusCB.SelectedValue);
+            Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
         }
+
+        private void Cmb_Sort_By_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox sortRatingCB = (ComboBox)sender;
+            if(((string)sortRatingCB.SelectedValue).Equals("Highest rating") || ((string)sortRatingCB.SelectedValue).Equals("Lowest rating"))
+            {
+                companyReviewFilter.setSorting(((string)sortRatingCB.SelectedValue).Equals("Highest rating") ? true : false);
+            }
+            else if(((string)sortRatingCB.SelectedValue).Equals("Newest first") || ((string)sortRatingCB.SelectedValue).Equals("Oldest first"))
+            {
+                companyReviewFilter.setSortingByTime(((string)sortRatingCB.SelectedValue).Equals("Newest first") ? true : false);
+            }
+            Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+        }
+
+        
     }
 
 }

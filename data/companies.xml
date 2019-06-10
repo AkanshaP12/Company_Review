@@ -1,22 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<companyDetails>
-    <company>
-      <id>1</id>
-      <name>SAP</name>
-      <logoPath>..\Resources\Images\Logos\sap.png</logoPath>
-    </company>
-    <company>
-      <id>2</id>
-      <name>ABB</name>
-      <logoPath>..\Resources\Images\Logos\abb.png</logoPath>
-    </company>
-    <company>
-      <id>3</id>
-      <name>BaSF</name>
-      <logoPath>..\Resources\Images\Logos\basf.png</logoPath>
-    </company>
-	<company>
-      <id>4</id>
-      <name>Heidelberg Cement</name>
-    </company>
+<?xml version="1.0"?>
+<companyDetails xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <company>
+    <id>1</id>
+    <name>SAP</name>
+    <logoPath>..\Resources\Images\Logos\sap.png</logoPath>
+  </company>
+  <company>
+    <id>2</id>
+    <name>ABB</name>
+    <logoPath>..\Resources\Images\Logos\abb.png</logoPath>
+  </company>
+  <company>
+    <id>3</id>
+    <name>BaSF</name>
+    <logoPath>..\Resources\Images\Logos\basf.png</logoPath>
+  </company>
+  <company>
+    <id>4</id>
+    <name>Heidelberg Cement</name>
+    <logoPath>..\Resources\Images\Logos\unknown.png</logoPath>
+  </company>
+  <company>
+    <id>5</id>
+    <name>Google</name>
+    <logoPath>..\Resources\Images\Logos\unknown.png</logoPath>
+  </company>
 </companyDetails>

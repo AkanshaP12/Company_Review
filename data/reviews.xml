@@ -1,42 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<userReviews>
-    <review>
-      <id>1</id>
-      <company-id>1</company-id>
-      <rating>4.6</rating>
-      <jobStatus>Current</jobStatus>
-      <jobLocation>Waldorf, Germany</jobLocation>
-      <jobDepartment>Software development</jobDepartment>
-      <jobDesignation>Software engineer</jobDesignation>
-      <startDate>12/10/2018</startDate>
-      <employmentStatus>Full-time</employmentStatus>
-      <skillsrequired>
-        <skill>
-          <name>Java</name>
-        </skill>
-        <skill>
-          <name>C#</name>
-        </skill>
-      </skillsrequired>
-      <reviewTitle>Good experience</reviewTitle>
-      <pros>
-        <pro>
-          <comment>Good software architecture and code base</comment>
-        </pro>
-        <pro>
-          <comment>Helpful team</comment>
-        </pro>
-      </pros>
-      <cons>
-        <con>
-          <comment>Not good management</comment>
-        </con>
-        <con>
-          <comment>Work from home not available</comment>
-        </con>
-      </cons>
-      <wouldYouRecommend>Yes</wouldYouRecommend>
-    </review>
+<?xml version="1.0"?>
+<userReviews xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <review>
+    <id>1</id>
+    <company-id>1</company-id>
+    <rating>4.6</rating>
+    <jobStatus>Current</jobStatus>
+    <jobLocation>Waldorf, Germany</jobLocation>
+    <jobDepartment>Software development</jobDepartment>
+    <jobDesignation>Software engineer</jobDesignation>
+    <startDate>12/10/2018</startDate>
+    <employmentStatus>Full-time</employmentStatus>
+    <skillsrequired>
+      <skill>
+        <name>Java</name>
+      </skill>
+      <skill>
+        <name>C#</name>
+      </skill>
+    </skillsrequired>
+    <reviewTitle>Good experience</reviewTitle>
+    <pros>
+      <pro>
+        <comment>Good software architecture and code base</comment>
+      </pro>
+      <pro>
+        <comment>Helpful team</comment>
+      </pro>
+    </pros>
+    <cons>
+      <con>
+        <comment>Not good management</comment>
+      </con>
+      <con>
+        <comment>Work from home not available</comment>
+      </con>
+    </cons>
+    <wouldYouRecommend>Yes</wouldYouRecommend>
+  </review>
   <review>
     <id>2</id>
     <company-id>1</company-id>
@@ -44,7 +44,7 @@
     <jobStatus>Current</jobStatus>
     <jobLocation>Waldorf, Germany</jobLocation>
     <jobDepartment>Product management</jobDepartment>
-	<jobDesignation>Team lead</jobDesignation>
+    <jobDesignation>Team lead</jobDesignation>
     <startDate>11/10/2018</startDate>
     <employmentStatus>Full-time</employmentStatus>
     <skillsrequired>
@@ -69,102 +69,102 @@
     <wouldYouRecommend>No</wouldYouRecommend>
   </review>
   <review>
-      <id>3</id>
-      <company-id>1</company-id>
-      <rating>4.0</rating>
-      <jobStatus>Former</jobStatus>
-      <jobLocation>Munich, Germany</jobLocation>
-      <jobDepartment>Business supply chain</jobDepartment>
-      <jobDesignation>Product owner</jobDesignation>
-      <startDate>10/08/2017</startDate>
-      <endDate>01/03/2019</endDate>
-      <employmentStatus>Full-time</employmentStatus>
-      <skillsrequired>
-        <skill>
-          <name>Jira</name>
-        </skill>
-        <skill>
-          <name>Excel</name>
-        </skill>
-      </skillsrequired>
-      <reviewTitle>Top employer</reviewTitle>
-      <pros>
-        <pro>
-          <comment>Very structured management</comment>
-        </pro>
-        <pro>
-          <comment>Multi cultural team, Good team chemistry.</comment>
-        </pro>
-      </pros>
-      <cons>
-        <con>
-          <comment>Not good for starters</comment>
-        </con>
-      </cons>
-      <wouldYouRecommend>Yes</wouldYouRecommend>
-    </review>
+    <id>3</id>
+    <company-id>1</company-id>
+    <rating>4.0</rating>
+    <jobStatus>Former</jobStatus>
+    <jobLocation>Munich, Germany</jobLocation>
+    <jobDepartment>Business supply chain</jobDepartment>
+    <jobDesignation>Product owner</jobDesignation>
+    <startDate>10/08/2017</startDate>
+    <endDate>01/03/2019</endDate>
+    <employmentStatus>Full-time</employmentStatus>
+    <skillsrequired>
+      <skill>
+        <name>Jira</name>
+      </skill>
+      <skill>
+        <name>Excel</name>
+      </skill>
+    </skillsrequired>
+    <reviewTitle>Top employer</reviewTitle>
+    <pros>
+      <pro>
+        <comment>Very structured management</comment>
+      </pro>
+      <pro>
+        <comment>Multi cultural team, Good team chemistry.</comment>
+      </pro>
+    </pros>
+    <cons>
+      <con>
+        <comment>Not good for starters</comment>
+      </con>
+    </cons>
+    <wouldYouRecommend>Yes</wouldYouRecommend>
+  </review>
   <review>
-  <id>4</id>
-      <company-id>1</company-id>
-      <rating>4.0</rating>
-      <jobStatus>Current</jobStatus>
-      <jobLocation>Waldorf, Germany</jobLocation>
-      <jobDepartment>Human Resources</jobDepartment>
-      <jobDesignation>Human Resources Associate</jobDesignation>
-      <startDate>17/10/2016</startDate>
-      <employmentStatus>Full-time</employmentStatus>
-      <skillsrequired>
-        <skill>
-          <name>Communication</name>
-        </skill>
-        <skill>
-          <name>Decision Making</name>
-        </skill>
-      </skillsrequired>
-      <reviewTitle>Wonderful employer with future</reviewTitle>
-      <pros>
-        <pro>
-          <comment>Future Prospects Benefits Work Life Balance Employee Offers Home Office Opportunities</comment>
-        </pro>
-      </pros>
-      <cons>
-        <con>
-          <comment>Parking situation could be improved, gym could tolerate an update</comment>
-        </con>
-      </cons>
-      <wouldYouRecommend>Yes</wouldYouRecommend>
-    </review>
+    <id>4</id>
+    <company-id>1</company-id>
+    <rating>4.0</rating>
+    <jobStatus>Current</jobStatus>
+    <jobLocation>Waldorf, Germany</jobLocation>
+    <jobDepartment>Human Resources</jobDepartment>
+    <jobDesignation>Human Resources Associate</jobDesignation>
+    <startDate>17/10/2016</startDate>
+    <employmentStatus>Full-time</employmentStatus>
+    <skillsrequired>
+      <skill>
+        <name>Communication</name>
+      </skill>
+      <skill>
+        <name>Decision Making</name>
+      </skill>
+    </skillsrequired>
+    <reviewTitle>Wonderful employer with future</reviewTitle>
+    <pros>
+      <pro>
+        <comment>Future Prospects Benefits Work Life Balance Employee Offers Home Office Opportunities</comment>
+      </pro>
+    </pros>
+    <cons>
+      <con>
+        <comment>Parking situation could be improved, gym could tolerate an update</comment>
+      </con>
+    </cons>
+    <wouldYouRecommend>Yes</wouldYouRecommend>
+  </review>
   <review>
-  <id>5</id>
-      <company-id>1</company-id>
-      <rating>2.0</rating>
-      <jobStatus>Current</jobStatus>
-      <jobLocation>St. Leon-Rot, Germany</jobLocation>
-      <jobDepartment>Software development</jobDepartment>
-      <jobDesignation>Support Engineer</jobDesignation>
-      <startDate>17/10/2016</startDate>
-      <employmentStatus>Full-time</employmentStatus>
-      <skillsrequired>
-        <skill>
-          <name>SAP ABAP</name>
-        </skill>
-        <skill>
-          <name>Python</name>
-        </skill>
-      </skillsrequired>
-      <reviewTitle>Company good Management not</reviewTitle>
-      <pros>
-        <pro>
-          <comment>Good general conditions very good social benefits a lot of variety in the job</comment>
-        </pro>
-      </pros>
-      <cons>
-        <con>
-          <comment>"Managers" do not act objectively but according to their own emotions.People are sold to customers with half knowledge and slides as experts. Minority promotion stands above the performance</comment>
-        </con>
-      </cons>
-      <wouldYouRecommend>No</wouldYouRecommend>
-    </review>
+    <id>5</id>
+    <company-id>1</company-id>
+    <rating>2.0</rating>
+    <jobStatus>Current</jobStatus>
+    <jobLocation>St. Leon-Rot, Germany</jobLocation>
+    <jobDepartment>Software development</jobDepartment>
+    <jobDesignation>Support Engineer</jobDesignation>
+    <startDate>17/10/2016</startDate>
+    <employmentStatus>Full-time</employmentStatus>
+    <skillsrequired>
+      <skill>
+        <name>SAP ABAP</name>
+      </skill>
+      <skill>
+        <name>Python</name>
+      </skill>
+    </skillsrequired>
+    <reviewTitle>Company good Management not</reviewTitle>
+    <pros>
+      <pro>
+        <comment>Good general conditions very good social benefits a lot of variety in the job</comment>
+      </pro>
+    </pros>
+    <cons>
+      <con>
+        <comment>"Managers" do not act objectively but according to their own emotions.People are sold to customers with half knowledge and slides as experts. Minority promotion stands above the performance</comment>
+      </con>
+    </cons>
+    <wouldYouRecommend>No</wouldYouRecommend>
+  </review>
   <review>
     <id>6</id>
     <company-id>2</company-id>
@@ -172,7 +172,7 @@
     <jobStatus>Current</jobStatus>
     <jobLocation>Heidelberg, Germany</jobLocation>
     <jobDepartment>Software development</jobDepartment>
-	<jobDesignation>Quality engineer</jobDesignation>
+    <jobDesignation>Quality engineer</jobDesignation>
     <startDate>11/10/2018</startDate>
     <employmentStatus>Full-time</employmentStatus>
     <skillsrequired>
@@ -197,13 +197,13 @@
     <wouldYouRecommend>No</wouldYouRecommend>
   </review>
   <review>
-  <id>7</id>
+    <id>7</id>
     <company-id>4</company-id>
     <rating>1</rating>
     <jobStatus>Current</jobStatus>
     <jobLocation>Wiesloch, Germany</jobLocation>
     <jobDepartment>Manufacturing</jobDepartment>
-	<jobDesignation>Mechatronics Technician</jobDesignation>
+    <jobDesignation>Mechatronics Technician</jobDesignation>
     <startDate>12/9/2017</startDate>
     <employmentStatus>Full-time</employmentStatus>
     <skillsrequired>
@@ -219,13 +219,54 @@
       <pro>
         <comment>The training is practiced with fun, yet purposeful. The instructors always have an open ear, whether in the professional or private sector.</comment>
       </pro>
-	  <pro>
-		<comment>The compensation is also so high that you can live very well with it.</comment>
-	  </pro>
+      <pro>
+        <comment>The compensation is also so high that you can live very well with it.</comment>
+      </pro>
     </pros>
     <cons>
       <con>
         <comment>It is a bit chaotic at the moment, because a new structuring is going on, which is not easy at the moment, but which will improve over time.</comment>
+      </con>
+    </cons>
+    <wouldYouRecommend>Yes</wouldYouRecommend>
+  </review>
+  <review>
+    <id>8</id>
+    <company-id>5</company-id>
+    <rating>4</rating>
+    <jobStatus>Former</jobStatus>
+    <jobLocation>Mannheim</jobLocation>
+    <jobDepartment>Product Management</jobDepartment>
+    <jobDesignation>Product owner</jobDesignation>
+    <startDate>3/12/2018</startDate>
+    <endDate>22/5/2019</endDate>
+    <employmentStatus>Full-time</employmentStatus>
+    <skillsrequired>
+      <skill>
+        <name>wireframes</name>
+      </skill>
+      <skill>
+        <name>excel</name>
+      </skill>
+      <skill>
+        <name>leadership</name>
+      </skill>
+    </skillsrequired>
+    <reviewTitle>Very good company</reviewTitle>
+    <pros>
+      <pro>
+        <comment>Good food</comment>
+      </pro>
+      <pro>
+        <comment>Good salary</comment>
+      </pro>
+    </pros>
+    <cons>
+      <con>
+        <comment>No on-site opportunity</comment>
+      </con>
+      <con>
+        <comment>Bad team</comment>
       </con>
     </cons>
     <wouldYouRecommend>Yes</wouldYouRecommend>

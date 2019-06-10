@@ -46,5 +46,17 @@ namespace Company_Review.Properties {
                 this["next_company_id"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int next_review_id {
+            get {
+                return ((int)(this["next_review_id"]));
+            }
+            set {
+                this["next_review_id"] = value;
+            }
+        }
     }
 }
