@@ -8,10 +8,10 @@
              >
     <Grid Margin="10,0,0,0">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="50,0,0,0">
-            <Button x:Name="Btn_Back_To_All_Companies" Content="Back" Click="Btn_Back_To_All_Companies_Click"  Width="70" Height="25" HorizontalAlignment="Left" Margin="0,10,0,0" ></Button>
-            <Label Content="Add Reviews" Margin="0,0,10,0" FontSize="20"/>
-            <TabControl TabStripPlacement="Top" x:Name="Tbc_Add_ReviewTC">
-                <TabItem Header="Job Details" FontSize="20" IsSelected="True" Width="150" Margin="-5,0,0,0">
+            <Button x:Name="Btn_Back_To_All_Companies" Content="Back" Click="Btn_Back_To_All_Companies_Click"  Width="70" Height="25" HorizontalAlignment="Left" Margin="0,10,0,0"  Background="#1a79bc" Foreground="White"></Button>
+            <Label Content="Add Your Experience!!" Margin="0,0,10,0" FontSize="20"/>
+            <TabControl TabStripPlacement="Top" x:Name="Tbc_Add_ReviewTC" >
+                <TabItem Header="Job Details" FontSize="20" IsSelected="True" Width="150" Margin="-5,0,0,0" BorderBrush="#1a79bc" >
                     <StackPanel Orientation="Vertical" Width="750" Height="540" Margin="0,10,0,10">
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
 
@@ -33,7 +33,7 @@
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Job Status:" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
                             <RadioButton Content="Current" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Center" FontSize="20" IsChecked="True" x:Name="Rtn_Is_Current"/>
-                            <RadioButton Content="Former" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Center" FontSize="20" x:Name="Rtn_Is_Former"/>
+                            <RadioButton Content="Former" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Center" FontSize="20" x:Name="Rtn_Is_Former" Checked="Rtn_Is_Former_Checked" Unchecked="Rtn_Is_Former_Unchecked"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Employment Status" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
@@ -55,23 +55,23 @@
 
                             <DatePicker Height="30" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40, 5, 0, 0"  x:Name="Dp_startDate" SelectedDate="{Binding currentReview.startDateTime}"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
+                        <StackPanel Orientation="Horizontal" Margin="20,10,0,10" Visibility="Collapsed" x:Name="Stk_endDate">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
                             <DatePicker Height="30" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40, 5, 0, 0"  x:Name="Dp_endDate" SelectedDate="{Binding currentReview.endDateTime}"/>
                         </StackPanel>
 
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Skills Required for Job" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="30" Margin="40,5,0,0" TextWrapping="Wrap" Text="{Binding currentReview.skillsForInput}" VerticalAlignment="Top" Width="250" FontSize="20"/>
+                            <TextBox HorizontalAlignment="Left" Height="40" Margin="40,5,0,0" TextWrapping="Wrap" Text="{Binding currentReview.skillsForInput}" VerticalAlignment="Top" Width="250" FontSize="20"/>
                         </StackPanel>
-                        <Button Content="Next" Margin="270,10,0,0"  Height="30" Width="100" x:Name="Btn_nextReview" Click="Btn_nextReview_Click"/>
+                        <Button Content="Next" Margin="270,10,0,0"  Height="30" Width="100" x:Name="Btn_nextReview" Click="Btn_nextReview_Click" Background="#1a79bc" Foreground="White"/>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Review" FontSize="20" Width="150">
+                <TabItem Header="Review" FontSize="20" Width="150" BorderBrush="#1a79bc">
                     <StackPanel Orientation="Vertical" Height="540" Width="750" Margin="0,10,0,10">
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="30" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.companyName}" VerticalAlignment="Top" Width="250" FontSize="20" ToolTip=""/>
+                            <TextBox HorizontalAlignment="Left" Height="30" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.companyName}" VerticalAlignment="Top" Width="250" FontSize="20" x:Name="Tbx_companyName"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rating" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
@@ -111,8 +111,8 @@
                                 <ColumnDefinition Width="450"></ColumnDefinition>
                                 <ColumnDefinition Width="500"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Content="Previous" Margin="280,5,70,5" Width="95" x:Name="Btn_BackToJobDetails" Click="Btn_BackToJobDetails_Click"></Button>
-                            <Button Content="Submit Review" Margin="0,5,386,5" Width="150" HorizontalAlignment="Right" Grid.ColumnSpan="2" x:Name="Btn_SubmitReview" Click="Btn_SubmitReview_Click"/>
+                            <Button Grid.Column="0" Content="Previous" Margin="280,5,70,5" Width="95" x:Name="Btn_BackToJobDetails" Click="Btn_BackToJobDetails_Click" Background="#1a79bc" Foreground="White"></Button>
+                            <Button Content="Submit Review" Margin="0,5,386,5" Width="150" HorizontalAlignment="Right" Grid.ColumnSpan="2" x:Name="Btn_SubmitReview" Click="Btn_SubmitReview_Click"  Background="#1a79bc" Foreground="White"/>
                         </Grid>
 
                     </StackPanel>

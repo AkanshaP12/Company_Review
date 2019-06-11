@@ -72,6 +72,8 @@ namespace Company_Review.Controls
         {
             validateInputs();
             writeToReviewsXml();
+            currentReview = null;
+            this.mainWindow.DisplayUserControl = new ViewReviewsUC(this.mainWindow);
         }
 
         private void validateInputs()
@@ -238,6 +240,30 @@ namespace Company_Review.Controls
             reviews.reviews.Add(currentReview);
             XMLSerializerWrapper.WriteXml<Reviews>(reviews, "data\\reviews.xml");
             MessageBox.Show("Review added successfully");
+
         }
+
+        private void Rtn_Is_Former_Checked(object sender, RoutedEventArgs e)
+        {
+            Stk_endDate.Visibility = Visibility.Visible;
+            
+        }
+
+        private void Rtn_Is_Former_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Stk_endDate.Visibility = Visibility.Collapsed;
+
+        }
+
+
+       // private void Tbx_companyName_KeyUp(object sender, KeyEventArgs e)
+       // {
+       //     if(string.IsNullOrEmpty(currentReview.companyName)) 
+       //     {
+       //         Tbx_companyName.
+
+       //     }
+
+       //}
     }
 }

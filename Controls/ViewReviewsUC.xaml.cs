@@ -38,6 +38,7 @@ namespace Company_Review.Controls
         public List<JobDepartment> jobDepartments { get; set; } = new List<JobDepartment>();
 
         public List<JobLocation> jobLocations { get; set; } = new List<JobLocation>();
+
         private bool handleDepartmentSelection = true;
         private bool handleLocationSelection = true;
 
@@ -84,6 +85,7 @@ namespace Company_Review.Controls
 
             populateDepartmentsAndLocations(null);
             Cmb_Empl_Status.SelectedValue = "All status";
+            Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
         }
 
         private void loadCultures()
@@ -180,6 +182,7 @@ namespace Company_Review.Controls
                     //load selected company items
                     companyReviewFilter.setCompanyId(companyReview.companyOverview.id);
                     Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+                    Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
                 }
             }
         }
@@ -301,6 +304,7 @@ namespace Company_Review.Controls
                 }
             }
             Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+            Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
         }
 
         private void Cbx_location_selection_Checked(object sender, RoutedEventArgs e)
@@ -376,6 +380,7 @@ namespace Company_Review.Controls
             }
 
             Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+            Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
         }
 
         private void Cmb_Empl_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -383,6 +388,7 @@ namespace Company_Review.Controls
             ComboBox empStatusCB = (ComboBox)sender;
             companyReviewFilter.addEmpStatusFilter((string)empStatusCB.SelectedValue);
             Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+            Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
         }
 
         private void Cmb_Sort_By_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -390,13 +396,16 @@ namespace Company_Review.Controls
             ComboBox sortRatingCB = (ComboBox)sender;
             if(((string)sortRatingCB.SelectedValue).Equals("Highest rating") || ((string)sortRatingCB.SelectedValue).Equals("Lowest rating"))
             {
+                companyReviewFilter.setSortingByTime(null);
                 companyReviewFilter.setSorting(((string)sortRatingCB.SelectedValue).Equals("Highest rating") ? true : false);
             }
             else if(((string)sortRatingCB.SelectedValue).Equals("Newest first") || ((string)sortRatingCB.SelectedValue).Equals("Oldest first"))
             {
+                companyReviewFilter.setSorting(null);
                 companyReviewFilter.setSortingByTime(((string)sortRatingCB.SelectedValue).Equals("Newest first") ? true : false);
             }
             Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+            Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
         }
 
         
