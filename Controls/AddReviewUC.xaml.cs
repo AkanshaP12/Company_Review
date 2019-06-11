@@ -3,6 +3,8 @@ using Company_Review.core;
 using Company_Review.core.Converter;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +23,24 @@ namespace Company_Review.Controls
     /// <summary>
     /// Interaction logic for AddReviewUC.xaml
     /// </summary>
-    public partial class AddReviewUC : UserControl
+    public partial class AddReviewUC : UserControl, INotifyPropertyChanged
     {
         public MainWindow mainWindow;
         public Review currentReview { get; set; } 
+        public ObservableCollection<CompanyOverview> companiesForComboBox;
+        public ObservableCollection<String> departmentForComboBox;
+        //private string comboBoxSearchText_;
+        //public string comboBoxSearchText
+        //{
+        //    get { return comboBoxSearchText_; }
+        //    set
+        //    {
+        //        if (comboBoxSearchText_ == value) return;
+        //        comboBoxSearchText_ = value;
+        //        OnPropertyChanged("comboBoxSearchText");
+        //    }
+        //}
+
         public AddReviewUC(MainWindow parentWindow)
         {
             InitializeComponent();
@@ -255,15 +271,73 @@ namespace Company_Review.Controls
 
         }
 
+        private void Cb_companyName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (String.IsNullOrEmpty(currentReview.companyName))
+            {
+                cb_companyName.ItemsSource = companiesForComboBox;
+                return;
+            }
 
-       // private void Tbx_companyName_KeyUp(object sender, KeyEventArgs e)
-       // {
-       //     if(string.IsNullOrEmpty(currentReview.companyName)) 
-       //     {
-       //         Tbx_companyName.
+            ObservableCollection<CompanyOverview> tempCompanies = new ObservableCollection<CompanyOverview>((from n in companiesForComboBox where n.name.ToLower().StartsWith(currentReview.companyName.ToLower()) select n).ToList());
+            if (tempCompanies != null)
+            {
+                cb_companyName.ItemsSource = tempCompanies;
+                currentReview.companyName = currentReview.companyName;
+            }
+        }
 
-       //     }
+        private void Cb_companyName_KeyDown(object sender, KeyEventArgs e)
+        {
+            cb_companyName.IsDropDownOpen = true;
+        }
 
-       //}
+        private void Cb_companyName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox companyComboBox = sender as ComboBox;
+            if (companyComboBox.SelectedItem != null)
+            {
+                CompanyOverview companyOverview = (CompanyOverview)companyComboBox.SelectedItem;
+                if (companyOverview != null)
+                {
+                    Reviews reviews = XMLSerializerWrapper.ReadXml<Reviews>("data\\reviews.xml");
+                    departmentForComboBox = new ObservableCollection<string>((from n in reviews.reviews where n.companyId == companyOverview.id select n.jobDepartment).Distinct().OrderBy(x => x).ToList());
+                }
+            }
+        }
+
+        private void Cb_companyName_DropDownOpened(object sender, EventArgs e)
+        {
+            ComboBox companyComboBox = sender as ComboBox;
+            companyComboBox.SelectedItem = null;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Companies companiesFromFile = XMLSerializerWrapper.ReadXml<Companies>("data\\companies.xml");
+            companiesForComboBox = new ObservableCollection<CompanyOverview>(companiesFromFile.companyDetails);
+            cb_companyName.ItemsSource = companiesForComboBox;
+        }
+
+        private void OnPropertyChanged(string v)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(v));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // private void Tbx_companyName_KeyUp(object sender, KeyEventArgs e)
+        // {
+        //     if(string.IsNullOrEmpty(currentReview.companyName)) 
+        //     {
+        //         Tbx_companyName.
+
+        //     }
+
+        //}
     }
 }

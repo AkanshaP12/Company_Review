@@ -64,6 +64,10 @@ namespace Company_Review.classes
                 this.lastPostedDate = (from n in reviews select n.postedDate).OrderByDescending(x => x).ToList()[0];
             }
         }
+        public override string ToString()
+        {
+            return name;
+        }
 
     }
 }

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Company_Review.Controls"
              mc:Ignorable="d" 
-             >
+             x:Name="UC_Add_Review" Loaded="UserControl_Loaded">
     <Grid Margin="10,0,0,0">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="50,0,0,0">
             <Button x:Name="Btn_Back_To_All_Companies" Content="Back" Click="Btn_Back_To_All_Companies_Click"  Width="70" Height="25" HorizontalAlignment="Left" Margin="0,10,0,0"  Background="#1a79bc" Foreground="White"></Button>
@@ -16,7 +16,30 @@
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
 
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="30" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.companyName}" VerticalAlignment="Top" Width="250" FontSize="20"/>
+                            <!--<TextBox HorizontalAlignment="Left" Height="30" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.companyName}" VerticalAlignment="Top" Width="250" FontSize="20"/>-->
+                            <ComboBox Grid.Column="0"  IsEditable="True" Width="250" Height="30" IsTextSearchEnabled="False" x:Name="cb_companyName" 
+                  Text="{Binding currentReview.companyName}" KeyUp="Cb_companyName_KeyUp" KeyDown="Cb_companyName_KeyDown" SelectedValuePath="companyOverview.id" SelectionChanged="Cb_companyName_SelectionChanged" DropDownOpened="Cb_companyName_DropDownOpened" Margin="40,0,0,0">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid VerticalAlignment="Top">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40">
+                                                </ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding logoPath}" Width="25" Height="25"/>
+                                            <TextBlock Grid.Column="1" FontSize="20" TextWrapping="Wrap" Margin="5,0,0,0">
+                                            <Run Text="{Binding name}"/>
+                                            </TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Job Location" VerticalAlignment="Top" Height="29" Width="250" FontSize="20"/>
