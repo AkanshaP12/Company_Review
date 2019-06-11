@@ -33,8 +33,6 @@ namespace Company_Review.Controls
         public CompanyReviewFilter companyReviewFilter;
         public ObservableCollection<CompanyReview> companiesForComboBox;
         public MainWindow mainWindow;
-        public string language;
-        public List<string> cultures = new List<string> { "en english", "de detush" };
         public List<JobDepartment> jobDepartments { get; set; } = new List<JobDepartment>();
 
         public List<JobLocation> jobLocations { get; set; } = new List<JobLocation>();
@@ -46,6 +44,18 @@ namespace Company_Review.Controls
 
         private Reviews reviews;
         private Companies companiesFromFile;
+
+        private bool isNoDataVisible_ { get; set; }
+
+        public bool isNoDataVisible
+        {
+            get { return isNoDataVisible_; }
+            set
+            {
+                isNoDataVisible_ = value;
+                OnPropertyChanged("isNoDataVisible");
+            }
+        }
 
         public string comboBoxSearchText
         {
@@ -61,10 +71,6 @@ namespace Company_Review.Controls
         public ViewReviewsUC(MainWindow mainWindow)
         {
 
-            language = Properties.Settings.Default.language;
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-
             InitializeComponent();
             this.mainWindow = mainWindow;
         }
@@ -73,11 +79,18 @@ namespace Company_Review.Controls
         {
             //GenerateCompanies();
             loadFromFile();
-            loadCultures();
 
             //Lbx_companies.ItemsSource = companies;
             ObservableCollection<CompanyReview> filteredCompanies = companyReviewFilter.filterByCriteria();
             Itc_reviews.ItemsSource = filteredCompanies;
+            if(filteredCompanies.Count > 0)
+            {
+                isNoDataVisible = false;
+            }
+            else
+            {
+                isNoDataVisible = true;
+            }
             this.DataContext = this;
             
             companiesForComboBox = new ObservableCollection<CompanyReview>(from n in filteredCompanies where n.companyOverview.departmentName == "All departments" select n);
@@ -86,19 +99,6 @@ namespace Company_Review.Controls
             populateDepartmentsAndLocations(null);
             Cmb_Empl_Status.SelectedValue = "All status";
             Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
-        }
-
-        private void loadCultures()
-        {
-            List<ComboBoxItem> cultureItems = new List<ComboBoxItem>();
-            foreach (string culture in cultures)
-            {
-                ComboBoxItem cb = new ComboBoxItem();
-                cb.Content = culture;
-                cultureItems.Add(cb);
-
-            }
-            //Cbx_lang.ItemsSource = cultureItems;
         }
 
         private void loadFromFile()
@@ -128,14 +128,6 @@ namespace Company_Review.Controls
             this.mainWindow.DisplayUserControl = new AddReviewUC(mainWindow);
         }
 
-        private void Cbx_lang_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string txt = ((ComboBoxItem)(sender as ComboBox).SelectedItem).Content.ToString();
-            language = txt.Substring(0, 2);
-            Properties.Settings.Default.language = language;
-            Properties.Settings.Default.Save();
-        }
-
         private void OnPropertyChanged(string v)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -153,6 +145,7 @@ namespace Company_Review.Controls
             if (String.IsNullOrEmpty(comboBoxSearchText))
             {
                 cb_companyName.ItemsSource = companiesForComboBox;
+                applyCompanyFilter();
                 return;
             }
 
@@ -171,19 +164,51 @@ namespace Company_Review.Controls
 
         private void Cb_companyName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox companyComboBox = sender as ComboBox;
-            if(companyComboBox.SelectedItem != null)
+            applyCompanyFilter();
+        }
+
+        private void applyCompanyFilter()
+        {
+            if (cb_companyName.SelectedItem != null && !String.IsNullOrEmpty(comboBoxSearchText))
             {
-                CompanyReview companyReview = (CompanyReview)companyComboBox.SelectedItem;
-                if(companyReview.reviews != null)
+                CompanyReview companyReview = (CompanyReview)cb_companyName.SelectedItem;
+                if (companyReview.reviews != null)
                 {
                     populateDepartmentsAndLocations(companyReview);
 
                     //load selected company items
                     companyReviewFilter.setCompanyId(companyReview.companyOverview.id);
-                    Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+                    ObservableCollection<CompanyReview> tempReviews = companyReviewFilter.filterByCriteria();
+                    Itc_reviews.ItemsSource = tempReviews;
+                    if (tempReviews.Count > 0)
+                    {
+                        isNoDataVisible = false;
+                    }
+                    else
+                    {
+                        isNoDataVisible = true;
+                    }
                     Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
                 }
+            }
+            else if(cb_companyName.SelectedItem != null)
+            {
+                companyReviewFilter.clearAllFilters();
+                ObservableCollection<CompanyReview> filteredCompanies = companyReviewFilter.filterByCriteria();
+                Itc_reviews.ItemsSource = filteredCompanies;
+                if(filteredCompanies.Count > 0)
+                {
+                    isNoDataVisible = false;
+                }
+                else
+                {
+                    isNoDataVisible = true;
+                }
+                cb_companyName.ItemsSource = companiesForComboBox;
+
+                populateDepartmentsAndLocations(null);
+                Cmb_Empl_Status.SelectedValue = "All status";
+                Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
             }
         }
 
@@ -303,7 +328,16 @@ namespace Company_Review.Controls
                     }
                 }
             }
-            Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+            ObservableCollection<CompanyReview> tempReviews = companyReviewFilter.filterByCriteria();
+            Itc_reviews.ItemsSource = tempReviews;
+            if (tempReviews.Count > 0)
+            {
+                isNoDataVisible = false;
+            }
+            else
+            {
+                isNoDataVisible = true;
+            }
             Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
         }
 
@@ -356,6 +390,13 @@ namespace Company_Review.Controls
                 }
             }
 
+            bool isAllLocationSelected = (from n in jobLocations where n.isSelected == false select n).Count() == 1;
+            if (isAllLocationSelected)
+            {
+                JobLocation selectAllLocation = (from n in jobLocations where n.location == "Select all" select n).ToList()[0];
+                selectAllLocation.isSelected = true;
+            }
+
             foreach (JobLocation location in jobLocations)
             {
                 if (location.isSelected == true)
@@ -372,14 +413,16 @@ namespace Company_Review.Controls
                 }
             }
 
-            bool isAllLocationSelected = (from n in jobLocations where n.isSelected == false select n).Count() == 1;
-            if (isAllLocationSelected)
+            ObservableCollection<CompanyReview> tempReviews = companyReviewFilter.filterByCriteria();
+            Itc_reviews.ItemsSource = tempReviews;
+            if (tempReviews.Count > 0)
             {
-                JobLocation selectAllLocation = (from n in jobLocations where n.location == "Select all" select n).ToList()[0];
-                selectAllLocation.isSelected = true;
+                isNoDataVisible = false;
             }
-
-            Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+            else
+            {
+                isNoDataVisible = true;
+            }
             Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
         }
 
@@ -387,7 +430,16 @@ namespace Company_Review.Controls
         {
             ComboBox empStatusCB = (ComboBox)sender;
             companyReviewFilter.addEmpStatusFilter((string)empStatusCB.SelectedValue);
-            Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+            ObservableCollection<CompanyReview> tempReviews = companyReviewFilter.filterByCriteria();
+            Itc_reviews.ItemsSource = tempReviews;
+            if (tempReviews.Count > 0)
+            {
+                isNoDataVisible = false;
+            }
+            else
+            {
+                isNoDataVisible = true;
+            }
             Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
         }
 
@@ -404,7 +456,16 @@ namespace Company_Review.Controls
                 companyReviewFilter.setSorting(null);
                 companyReviewFilter.setSortingByTime(((string)sortRatingCB.SelectedValue).Equals("Newest first") ? true : false);
             }
-            Itc_reviews.ItemsSource = companyReviewFilter.filterByCriteria();
+            ObservableCollection<CompanyReview> tempReviews = companyReviewFilter.filterByCriteria();
+            Itc_reviews.ItemsSource = tempReviews;
+            if (tempReviews.Count > 0)
+            {
+                isNoDataVisible = false;
+            }
+            else
+            {
+                isNoDataVisible = true;
+            }
             Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
         }
 

@@ -86,57 +86,60 @@ namespace Company_Review.Controls
 
         private void Btn_SubmitReview_Click(object sender, RoutedEventArgs e)
         {
-            validateInputs();
-            writeToReviewsXml();
-            currentReview = null;
-            this.mainWindow.DisplayUserControl = new ViewReviewsUC(this.mainWindow);
+            bool isValid = validateInputs();
+            if(isValid)
+            {
+                writeToReviewsXml();
+                currentReview = null;
+                this.mainWindow.DisplayUserControl = new ViewReviewsUC(this.mainWindow);
+            }
         }
 
-        private void validateInputs()
+        private bool validateInputs()
         {
             currentReview.postedOnDateTime = DateTime.Now;
 
             if (currentReview == null)
             {
                 MessageBox.Show("Company review not provided.");
-                return;
+                return false;
             }
 
             if(String.IsNullOrEmpty(currentReview.companyName))
             {
                 MessageBox.Show("Company name not provided.");
-                return;
+                return false;
             }
             if(string.IsNullOrEmpty(currentReview.jobLocation))
             {
                 MessageBox.Show("Location not provided");
-                return;
+                return false;
             }
             if(string.IsNullOrEmpty(currentReview.jobDepartment))
             {
                 MessageBox.Show("Department not provided");
-                return;
+                return false;
             }
             if(string.IsNullOrEmpty(currentReview.jobDesignation))
             {
                 MessageBox.Show("Designation not provided");
-                return;
+                return false;
             }
             if(string.IsNullOrEmpty(currentReview.employmentStatus))
             {
                 MessageBox.Show("Please select Employment Status");
-                return;
+                return false;
             }
             if(string.IsNullOrEmpty(currentReview.skillsForInput))
             {
                 MessageBox.Show("Please provide skills for the profile");
-                return;
+                return false;
             }
 
             if(string.IsNullOrEmpty(currentReview.reviewTitle))
             {
                 MessageBox.Show("Review Title not provided");
-                return;
+                return false;
             }
 
             populatePros();
@@ -161,7 +164,7 @@ namespace Company_Review.Controls
                 currentReview.wouldYouRecommend = "No";
             }
 
-            
+            return false;
         }
 
         private void populatePros()
@@ -302,6 +305,7 @@ namespace Company_Review.Controls
                 {
                     Reviews reviews = XMLSerializerWrapper.ReadXml<Reviews>("data\\reviews.xml");
                     departmentForComboBox = new ObservableCollection<string>((from n in reviews.reviews where n.companyId == companyOverview.id select n.jobDepartment).Distinct().OrderBy(x => x).ToList());
+                    Cb_departmentName.ItemsSource = departmentForComboBox;
                 }
             }
         }
@@ -330,14 +334,36 @@ namespace Company_Review.Controls
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // private void Tbx_companyName_KeyUp(object sender, KeyEventArgs e)
-        // {
-        //     if(string.IsNullOrEmpty(currentReview.companyName)) 
-        //     {
-        //         Tbx_companyName.
+        private void Cb_departmentName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (String.IsNullOrEmpty(currentReview.jobDepartment))
+            {
+                Cb_departmentName.ItemsSource = departmentForComboBox;
+                return;
+            }
 
-        //     }
+            ObservableCollection<string> tempDepartments = new ObservableCollection<string>((from n in departmentForComboBox where n.ToLower().StartsWith(currentReview.jobDepartment.ToLower()) select n).ToList());
+            if (tempDepartments != null)
+            {
+                Cb_departmentName.ItemsSource = tempDepartments;
+                currentReview.jobDepartment = currentReview.jobDepartment;
+            }
+        }
 
-        //}
+        private void Cb_departmentName_KeyDown(object sender, KeyEventArgs e)
+        {
+            Cb_departmentName.IsDropDownOpen = true;
+        }
+
+        private void Cb_departmentName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void Cb_departmentName_DropDownOpened(object sender, EventArgs e)
+        {
+            ComboBox departmentComboBox = sender as ComboBox;
+            departmentComboBox.SelectedItem = null;
+        }
+
     }
 }

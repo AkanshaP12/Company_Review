@@ -4,12 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Company_Review"
-xmlns:myControls="clrnamespace:Company_Review.usercontrols "
-
-    mc:Ignorable="d"
-        Title="Student work placement review" x:Name="W_Main_Window" Loaded="W_Main_Window_Loaded" Width="930" Height="720">
+        xmlns:myControls="clrnamespace:Company_Review.usercontrols"
+        xmlns:resX ="clr-namespace:Company_Review.Properties"
+        FlowDirection="{Binding Mode=OneTime,Source={x:Static resX:Resources.flowDirection}}"
+        mc:Ignorable="d"
+        Title="Job review hut" x:Name="W_Main_Window" Loaded="W_Main_Window_Loaded" Width="930" Height="720">
     <Grid>
-        <ContentControl Content="{Binding DisplayUserControl}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="DimGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Job review hut" FontSize="16" Grid.Column="0" VerticalAlignment="Center" Margin="20,0,0,0" Foreground="White" FontWeight="Bold"></TextBlock>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1">
+                <TextBlock Text="Change language" Margin="0,0,5,0" VerticalAlignment="Center" Foreground="White"></TextBlock>
+                <ComboBox x:Name="Cbx_lang" Width="60" Height="20"  SelectionChanged="Cbx_lang_SelectionChanged" Margin="5,5,30,5" VerticalAlignment="Center" Foreground="Black"></ComboBox>
+            </StackPanel>
+        </Grid>
+        <ContentControl Grid.Row="1" Content="{Binding DisplayUserControl}" />
     </Grid>
 
 </Window>

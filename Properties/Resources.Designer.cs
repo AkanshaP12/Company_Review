@@ -70,7 +70,7 @@ namespace Company_Review.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View Reviews.
+        ///   Looks up a localized string similar to View reviews.
         /// </summary>
         public static string txt_apptitle {
             get {

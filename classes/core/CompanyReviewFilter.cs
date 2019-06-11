@@ -92,6 +92,15 @@ namespace Company_Review.classes.core
             isSortByNewestFirst = sortByNewest;
         }
 
+        public void clearAllFilters()
+        {
+            companyIdToBeFiltered = -1;
+            departmentsToBeFiltered = new HashSet<string>();
+            locationsToBeFiltered = new HashSet<string>();
+            isSortByDescending = null;
+            isSortByNewestFirst = null;
+        }
+
         public ObservableCollection<CompanyReview> filterByCriteria()
         {
             ObservableCollection<CompanyReview> tempFilteredList = new ObservableCollection<CompanyReview>();

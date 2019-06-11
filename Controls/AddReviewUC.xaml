@@ -6,18 +6,24 @@
              xmlns:local="clr-namespace:Company_Review.Controls"
              mc:Ignorable="d" 
              x:Name="UC_Add_Review" Loaded="UserControl_Loaded">
-    <Grid Margin="10,0,0,0">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="50,0,0,0">
-            <Button x:Name="Btn_Back_To_All_Companies" Content="Back" Click="Btn_Back_To_All_Companies_Click"  Width="70" Height="25" HorizontalAlignment="Left" Margin="0,10,0,0"  Background="#1a79bc" Foreground="White"></Button>
-            <Label Content="Add Your Experience!!" Margin="0,0,10,0" FontSize="20"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Background="DimGray" Grid.Row="0" VerticalAlignment="Center">
+            <Button x:Name="Btn_Back_To_All_Companies" Content="Back" Click="Btn_Back_To_All_Companies_Click"  Width="70" Height="25" HorizontalAlignment="Left" Margin="10,0,0,10" Background="#1a79bc" Foreground="White"></Button>
+            <TextBlock Text="Add review" Margin="10,0,0,15" FontSize="20" Foreground="White"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="50,5,0,0" Grid.Row="1">
             <TabControl TabStripPlacement="Top" x:Name="Tbc_Add_ReviewTC" >
                 <TabItem Header="Job Details" FontSize="20" IsSelected="True" Width="150" Margin="-5,0,0,0" BorderBrush="#1a79bc" >
-                    <StackPanel Orientation="Vertical" Width="750" Height="540" Margin="0,10,0,10">
+                    <StackPanel Orientation="Vertical" Width="750" Height="520" Margin="0,10,0,10">
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
 
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
                             <!--<TextBox HorizontalAlignment="Left" Height="30" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.companyName}" VerticalAlignment="Top" Width="250" FontSize="20"/>-->
-                            <ComboBox Grid.Column="0"  IsEditable="True" Width="250" Height="30" IsTextSearchEnabled="False" x:Name="cb_companyName" 
+                            <ComboBox IsEditable="True" Width="250" Height="30" IsTextSearchEnabled="False" x:Name="cb_companyName" 
                   Text="{Binding currentReview.companyName}" KeyUp="Cb_companyName_KeyUp" KeyDown="Cb_companyName_KeyDown" SelectedValuePath="companyOverview.id" SelectionChanged="Cb_companyName_SelectionChanged" DropDownOpened="Cb_companyName_DropDownOpened" Margin="40,0,0,0">
                                 <ComboBox.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -47,7 +53,15 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Department" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="{Binding currentReview.jobDepartment}" VerticalAlignment="Top" Width="250" FontSize="20" Margin="40, 5, 0, 0"/>
+                            <!--<TextBox HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="{Binding currentReview.jobDepartment}" VerticalAlignment="Top" Width="250" FontSize="20" Margin="40, 5, 0, 0"/>-->
+                            <ComboBox IsEditable="True" Width="250" Height="30" IsTextSearchEnabled="False" x:Name="Cb_departmentName" 
+                  Text="{Binding currentReview.jobDepartment}" KeyUp="Cb_departmentName_KeyUp" KeyDown="Cb_departmentName_KeyDown" SelectedValuePath="Content" SelectionChanged="Cb_departmentName_SelectionChanged" DropDownOpened="Cb_departmentName_DropDownOpened" Margin="40,0,0,0">
+                                <!--<ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>-->
+                            </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Designation" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
@@ -85,13 +99,13 @@
 
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Skills Required for Job" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="40" Margin="40,5,0,0" TextWrapping="Wrap" Text="{Binding currentReview.skillsForInput}" VerticalAlignment="Top" Width="250" FontSize="20"/>
+                            <TextBox HorizontalAlignment="Left" Height="60" Margin="40,5,0,0" TextWrapping="Wrap" Text="{Binding currentReview.skillsForInput}" VerticalAlignment="Top" Width="250" FontSize="20" AcceptsReturn="True" ToolTip="Please add comma in between skills"/>
                         </StackPanel>
-                        <Button Content="Next" Margin="270,10,0,0"  Height="30" Width="100" x:Name="Btn_nextReview" Click="Btn_nextReview_Click" Background="#1a79bc" Foreground="White"/>
+                        <Button Content="Next" Margin="270,30,0,0"  Height="30" Width="100" x:Name="Btn_nextReview" Click="Btn_nextReview_Click" Background="#1a79bc" Foreground="White"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Review" FontSize="20" Width="150" BorderBrush="#1a79bc">
-                    <StackPanel Orientation="Vertical" Height="540" Width="750" Margin="0,10,0,10">
+                    <StackPanel Orientation="Vertical" Height="520" Width="750" Margin="0,10,0,10">
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
                             <TextBox HorizontalAlignment="Left" Height="30" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.companyName}" VerticalAlignment="Top" Width="250" FontSize="20" x:Name="Tbx_companyName"/>

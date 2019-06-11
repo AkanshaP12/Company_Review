@@ -4,30 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Company_Review.Controls"
+             xmlns:converters ="clr-namespace:Company_Review.classes.converters"
              xmlns:resX ="clr-namespace:Company_Review.Properties"
              FlowDirection="{Binding Mode=OneTime,Source={x:Static resX:Resources.flowDirection}}"
              mc:Ignorable="d" 
              x:Name="UC_View_Reviews" Loaded="UC_View_Reviews_Loaded">
-    <Grid>
+    <Grid Background="DimGray">
+        <Grid.Resources>
+            <converters:PropertyVisibilityConverter x:Key="visibilityConverter"/>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*">
-                </ColumnDefinition>
-                <!--<ColumnDefinition Width="Auto"></ColumnDefinition>-->
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0"  Text="{x:Static resX:Resources.txt_apptitle}" FontSize="20" Margin="25,5,0,0"></TextBlock>
-           <!-- <ComboBox Grid.Column="1" x:Name="Cbx_lang" Width="60" Height="20"  SelectionChanged="Cbx_lang_SelectionChanged" Margin="5,5,30,5"></ComboBox>-->
-        </Grid>
+        <TextBlock Grid.Row="0" Text="{x:Static resX:Resources.txt_apptitle}" Foreground="White" FontSize="20" Margin="25,5,0,0"></TextBlock>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="270"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Background="DimGray" Margin="0,10,0,0">
+            <Grid Grid.Column="0" Margin="0,10,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -42,13 +38,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Filter for company" FontSize="15" Grid.Row="0" Margin="20,0,0,0" Foreground="White" />
                         <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-
-                            <ComboBox Grid.Column="0"  IsEditable="True" Width="130" Height="25" IsTextSearchEnabled="False" x:Name="cb_companyName" 
+                            <ComboBox IsEditable="True" Width="210" Height="25" IsTextSearchEnabled="False" x:Name="cb_companyName" 
                   Text="{Binding comboBoxSearchText}" KeyUp="Cb_companyName_KeyUp" KeyDown="Cb_companyName_KeyDown" SelectedValuePath="companyOverview.id" SelectionChanged="Cb_companyName_SelectionChanged" DropDownOpened="Cb_companyName_DropDownOpened" Margin="20,0,0,0">
                                 <ComboBox.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -71,12 +61,11 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <Button  Grid.Column="1" x:Name="Btn_AddReview" Width="75" Height="25" HorizontalAlignment="Right" Margin="5,0,0,0" Content="Add Review"  Click="Btn_AddReview_Click" Background="#61bcf3" Foreground="White"/>
                         </Grid>
                     </Grid>
                 </WrapPanel>
                 <StackPanel Orientation="Vertical" Margin="10,20,5,20" Grid.Row="1">
-                    <TextBlock Text="Filter by departments" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
+                    <TextBlock Text="Filter for departments" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
                     <ComboBox x:Name="Cmb_Departments" Width="210" HorizontalAlignment="Left" SelectedValuePath="departmentName" Margin="20,0,0,0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -90,7 +79,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="10,20,5,20" Grid.Row="2">
-                    <TextBlock Text="Filter by Locations" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
+                    <TextBlock Text="Filter for Locations" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
                     <ComboBox x:Name="Cmb_Locations" Width="210" HorizontalAlignment="Left" SelectedValuePath="location" Margin="20,0,0,0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -105,7 +94,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="10,20,5,20" Grid.Row="3">
-                    <TextBlock Text="Filter by employment status" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
+                    <TextBlock Text="Filter for employment status" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
                     <ComboBox Width="210" x:Name="Cmb_Empl_Status"  HorizontalAlignment="Left" Margin="20,0,0,0" SelectedValuePath="Content" SelectionChanged="Cmb_Empl_Status_SelectionChanged">
                         <ComboBoxItem Content="All status">
                         </ComboBoxItem>
@@ -128,13 +117,13 @@
 
             <!-- All Companies Code starts-->
 
-            <Grid Grid.Column="1" x:Name="Grd_All_Companies" Margin="5,10,10,10">
+            <Grid Grid.Column="1" x:Name="Grd_All_Companies" Margin="5,10,10,10" Background="White">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
                     <RowDefinition Height="25"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" Margin="30,10,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -144,7 +133,7 @@
                         <ItemsControl x:Name="Itc_FilterTags">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black" Background="DimGray" BorderThickness="1" CornerRadius="5" MaxWidth="200" HorizontalAlignment="Left" Margin="5,0,0,0">
+                                    <Border BorderBrush="Black" Background="DimGray" BorderThickness="1" CornerRadius="5" MaxWidth="170" HorizontalAlignment="Left" Margin="5,0,0,0">
                                         <TextBlock Text="{Binding .}" TextWrapping="Wrap" FontSize="12" Foreground="White" Margin="5,0,5,0">
                                         </TextBlock>
                                     </Border>
@@ -152,29 +141,36 @@
                             </ItemsControl.ItemTemplate>
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal" MaxWidth="550" VerticalAlignment="Top"/>
+                                    <WrapPanel Orientation="Horizontal" MaxWidth="500" VerticalAlignment="Top"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
                     </WrapPanel>
                 </Grid>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0,0,35,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Sort by:" FontSize="14" />
-                        <ComboBox Width="110" x:Name="Cmb_Sort_By" HorizontalAlignment="Left" SelectedValuePath="Content" SelectionChanged="Cmb_Sort_By_SelectionChanged" Height="25" VerticalContentAlignment="Center" Margin="5,0,0,0">
-                            <ComboBoxItem Content="Highest rating">
-                            </ComboBoxItem>
-                            <ComboBoxItem Content="Lowest rating">
-                            </ComboBoxItem>
-                            <ComboBoxItem Content="Newest first">
-                            </ComboBoxItem>
-                            <ComboBoxItem Content="Oldest first">
-                            </ComboBoxItem>
-                        </ComboBox>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" x:Name="Btn_AddReview" Width="75" Height="25" HorizontalAlignment="Left" Margin="30,0,0,0" Content="Add Review"  Click="Btn_AddReview_Click" Background="#61bcf3" Foreground="White"/>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0,0,35,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Sort by:" FontSize="14" />
+                            <ComboBox Width="110" x:Name="Cmb_Sort_By" HorizontalAlignment="Left" SelectedValuePath="Content" SelectionChanged="Cmb_Sort_By_SelectionChanged" Height="25" VerticalContentAlignment="Center" Margin="5,0,0,0">
+                                <ComboBoxItem Content="Highest rating">
+                                </ComboBoxItem>
+                                <ComboBoxItem Content="Lowest rating">
+                                </ComboBoxItem>
+                                <ComboBoxItem Content="Newest first">
+                                </ComboBoxItem>
+                                <ComboBoxItem Content="Oldest first">
+                                </ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
                 
-                <ScrollViewer Grid.Row="2" Margin="30,0,0,0" VerticalScrollBarVisibility="Auto">
+                <ScrollViewer Grid.Row="2" Margin="30,0,0,0" VerticalScrollBarVisibility="Auto" x:Name="Svw_Reviews">
                     <StackPanel Orientation="Vertical"  x:Name="Stp_All_Companies" Margin="0,0,20,0">
 
                         <ItemsControl Name="Itc_reviews">
@@ -294,7 +290,7 @@
                                                                                     </ItemsControl.ItemTemplate>
                                                                                 </ItemsControl>
                                                                             </Grid>
-                                                                            <TextBlock Grid.Row="8" Text="{Binding postedDate, StringFormat='Posted on {0}'}" FontSize="12" Margin="10,0,0,5" Grid.Column="0" Foreground="#FF958E8E"></TextBlock>
+                                                                            <TextBlock Grid.Row="8" Text="{Binding postedDate, StringFormat='Posted on {0}'}" FontSize="12" Margin="10,5,0,5" Grid.Column="0" Foreground="#FF958E8E"></TextBlock>
                                                                         </Grid>
                                                                     </Border>
                                                                 </DataTemplate>
@@ -312,6 +308,7 @@
                         </ItemsControl>
                     </StackPanel>
                 </ScrollViewer>
+                <TextBlock Grid.Row="2" Width="570" Margin="30,20,0,0" Text="No reviews available for filter criteria" x:Name="Tbk_NoData" Visibility="{Binding isNoDataVisible, Converter={StaticResource visibilityConverter}}" FontWeight="Bold" FontSize="16"></TextBlock>
             </Grid>
             <!-- All Companies Code Ends-->
             <!-- Reviews column Ends -->

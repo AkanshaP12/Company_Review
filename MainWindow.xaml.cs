@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,8 +27,9 @@ namespace Company_Review
     public partial class MainWindow : Window,  INotifyPropertyChanged
     {
 
-
+        public string language;
         private UserControl _DisplayUserControl;
+        public List<string> cultures = new List<string> { "en english", "de detush" };
 
         public UserControl DisplayUserControl
         {
@@ -44,10 +47,26 @@ namespace Company_Review
         public MainWindow()
         {
             //language = Properties.Settings.Default.language;
+
+            language = Properties.Settings.Default.language;
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             InitializeComponent();
             this.DataContext = this;
-            
+            loadCultures();
 
+        }
+
+        private void loadCultures()
+        {
+            List<ComboBoxItem> cultureItems = new List<ComboBoxItem>();
+            foreach (string culture in cultures)
+            {
+                ComboBoxItem cb = new ComboBoxItem();
+                cb.Content = culture;
+                cultureItems.Add(cb);
+
+            }
+            Cbx_lang.ItemsSource = cultureItems;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -68,6 +87,12 @@ namespace Company_Review
              DisplayUserControl = new ViewReviewsUC(this);
         }
 
-
+        private void Cbx_lang_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string txt = ((ComboBoxItem)(sender as ComboBox).SelectedItem).Content.ToString();
+            language = txt.Substring(0, 2);
+            Properties.Settings.Default.language = language;
+            Properties.Settings.Default.Save();
+        }
     }
 }
