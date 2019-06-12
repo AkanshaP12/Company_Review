@@ -12,12 +12,16 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Background="DimGray" Grid.Row="0" VerticalAlignment="Center">
-            <Button x:Name="Btn_Back_To_All_Companies" Content="Back" Click="Btn_Back_To_All_Companies_Click"  Width="70" Height="30" HorizontalAlignment="Left" Margin="10,0,0,10" Style="{StaticResource RoundButtonTemplate}"></Button>
+            <Button x:Name="Btn_Back_To_All_Companies" Click="Btn_Back_To_All_Companies_Click"  Width="75" Height="30" HorizontalAlignment="Left" Margin="10,0,0,10" Style="{StaticResource RoundButtonTemplate}">
+                <Button.Content>
+                    <TextBlock Text="Back" FontSize="16"></TextBlock>
+                </Button.Content>
+            </Button>
             <TextBlock Text="Add review" Margin="10,0,0,15" FontSize="20" Foreground="White"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="50,5,0,0" Grid.Row="1">
             <TabControl TabStripPlacement="Top" x:Name="Tbc_Add_ReviewTC" >
-                <TabItem Header="Job Details" FontSize="20" IsSelected="True" Width="150" Margin="-5,0,0,0" BorderBrush="#1a79bc" >
+                <TabItem Header="Job profile" FontSize="20" IsSelected="True" Width="150" Margin="-5,0,0,0" BorderBrush="#1a79bc" >
                     <StackPanel Orientation="Vertical" Width="750" Height="520" Margin="0,10,0,10">
                         <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
 

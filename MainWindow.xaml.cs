@@ -29,7 +29,7 @@ namespace Company_Review
 
         public string language;
         private UserControl _DisplayUserControl;
-        public List<string> cultures = new List<string> { "en english", "de detush" };
+        public List<string> cultures = new List<string> { "en english", "de deutsche" };
 
         public UserControl DisplayUserControl
         {

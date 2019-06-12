@@ -152,7 +152,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" x:Name="Btn_AddReview" Width="85" Height="35" HorizontalAlignment="Left" Margin="30,0,0,0" Content="Add Review"  Click="Btn_AddReview_Click" Style="{StaticResource RoundButtonTemplate}"/>
+                    <Button Grid.Column="0" x:Name="Btn_AddReview" Width="100" Height="35" HorizontalAlignment="Left" Margin="30,0,0,0" Content="Add Review"  Click="Btn_AddReview_Click" Style="{StaticResource RoundButtonTemplate}" FontSize="16"/>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0,0,35,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{x:Static resX:Resources.txt_sortby}" FontSize="14" />
