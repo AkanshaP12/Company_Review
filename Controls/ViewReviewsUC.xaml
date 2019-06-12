@@ -30,7 +30,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <WrapPanel Orientation="Horizontal" Grid.Row="0" Margin="10,10,5,20">
+                <WrapPanel Orientation="Horizontal" Grid.Row="0" Margin="10,20,5,10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20"></RowDefinition>
@@ -64,7 +64,7 @@
                         </Grid>
                     </Grid>
                 </WrapPanel>
-                <StackPanel Orientation="Vertical" Margin="10,20,5,20" Grid.Row="1">
+                <StackPanel Orientation="Vertical" Margin="10,20,5,10" Grid.Row="1">
                     <TextBlock Text="Filter for departments" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
                     <ComboBox x:Name="Cmb_Departments" Width="210" HorizontalAlignment="Left" SelectedValuePath="departmentName" Margin="20,0,0,0">
                         <ComboBox.ItemTemplate>
@@ -78,7 +78,7 @@
                     </ComboBox>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="10,20,5,20" Grid.Row="2">
+                <StackPanel Orientation="Vertical" Margin="10,20,5,10" Grid.Row="2">
                     <TextBlock Text="Filter for Locations" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
                     <ComboBox x:Name="Cmb_Locations" Width="210" HorizontalAlignment="Left" SelectedValuePath="location" Margin="20,0,0,0">
                         <ComboBox.ItemTemplate>
@@ -93,7 +93,7 @@
                     </ComboBox>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="10,20,5,20" Grid.Row="3">
+                <StackPanel Orientation="Vertical" Margin="10,20,5,10" Grid.Row="3">
                     <TextBlock Text="Filter for employment status" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
                     <ComboBox Width="210" x:Name="Cmb_Empl_Status"  HorizontalAlignment="Left" Margin="20,0,0,0" SelectedValuePath="Content" SelectionChanged="Cmb_Empl_Status_SelectionChanged">
                         <ComboBoxItem Content="All status">
@@ -120,7 +120,7 @@
             <Grid Grid.Column="1" x:Name="Grd_All_Companies" Margin="5,10,10,10" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"></RowDefinition>
-                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Margin="30,10,0,0">
@@ -152,7 +152,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" x:Name="Btn_AddReview" Width="75" Height="25" HorizontalAlignment="Left" Margin="30,0,0,0" Content="Add Review"  Click="Btn_AddReview_Click" Background="#61bcf3" Foreground="White"/>
+                    <Button Grid.Column="0" x:Name="Btn_AddReview" Width="85" Height="35" HorizontalAlignment="Left" Margin="30,0,0,0" Content="Add Review"  Click="Btn_AddReview_Click" Style="{StaticResource RoundButtonTemplate}"/>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0,0,35,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Sort by:" FontSize="14" />

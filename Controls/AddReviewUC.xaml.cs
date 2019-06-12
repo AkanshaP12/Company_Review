@@ -164,7 +164,7 @@ namespace Company_Review.Controls
                 currentReview.wouldYouRecommend = "No";
             }
 
-            return false;
+            return true;
         }
 
         private void populatePros()
@@ -283,16 +283,25 @@ namespace Company_Review.Controls
             }
 
             ObservableCollection<CompanyOverview> tempCompanies = new ObservableCollection<CompanyOverview>((from n in companiesForComboBox where n.name.ToLower().StartsWith(currentReview.companyName.ToLower()) select n).ToList());
-            if (tempCompanies != null)
+            if (tempCompanies != null && tempCompanies.Count > 0)
             {
                 cb_companyName.ItemsSource = tempCompanies;
+                currentReview.companyName = currentReview.companyName;
+            }
+            else
+            {
+                cb_companyName.ItemsSource = tempCompanies;
+                cb_companyName.IsDropDownOpen = false;
                 currentReview.companyName = currentReview.companyName;
             }
         }
 
         private void Cb_companyName_KeyDown(object sender, KeyEventArgs e)
         {
-            cb_companyName.IsDropDownOpen = true;
+            if(cb_companyName.Items.Count > 0)
+            {
+                cb_companyName.IsDropDownOpen = true;
+            }
         }
 
         private void Cb_companyName_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -341,6 +350,11 @@ namespace Company_Review.Controls
                 Cb_departmentName.ItemsSource = departmentForComboBox;
                 return;
             }
+            if(departmentForComboBox == null)
+            {
+                Cb_departmentName.IsDropDownOpen = false;
+                return;
+            }
 
             ObservableCollection<string> tempDepartments = new ObservableCollection<string>((from n in departmentForComboBox where n.ToLower().StartsWith(currentReview.jobDepartment.ToLower()) select n).ToList());
             if (tempDepartments != null)
@@ -352,7 +366,10 @@ namespace Company_Review.Controls
 
         private void Cb_departmentName_KeyDown(object sender, KeyEventArgs e)
         {
-            Cb_departmentName.IsDropDownOpen = true;
+            if (departmentForComboBox != null)
+            {
+                Cb_departmentName.IsDropDownOpen = true;
+            }
         }
 
         private void Cb_departmentName_SelectionChanged(object sender, SelectionChangedEventArgs e)

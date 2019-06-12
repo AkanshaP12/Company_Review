@@ -140,5 +140,8 @@
     <Resource Include="Resources\Images\Logos\abb.png" />
     <Resource Include="Resources\Images\Logos\basf.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Logos\Google.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

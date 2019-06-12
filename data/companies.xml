@@ -4,25 +4,30 @@
     <id>1</id>
     <name>SAP</name>
     <logoPath>..\Resources\Images\Logos\sap.png</logoPath>
+    <lastPostedDate>01/01/1970</lastPostedDate>
   </company>
   <company>
     <id>2</id>
     <name>ABB</name>
     <logoPath>..\Resources\Images\Logos\abb.png</logoPath>
+    <lastPostedDate>01/01/1970</lastPostedDate>
   </company>
   <company>
     <id>3</id>
     <name>BaSF</name>
     <logoPath>..\Resources\Images\Logos\basf.png</logoPath>
+    <lastPostedDate>01/01/1970</lastPostedDate>
   </company>
   <company>
     <id>4</id>
     <name>Heidelberg Cement</name>
     <logoPath>..\Resources\Images\Logos\unknown.png</logoPath>
+    <lastPostedDate>01/01/1970</lastPostedDate>
   </company>
   <company>
     <id>5</id>
     <name>Google</name>
-    <logoPath>..\Resources\Images\Logos\unknown.png</logoPath>
+    <logoPath>..\Resources\Images\Logos\Google.png</logoPath>
+    <lastPostedDate>01/01/1970</lastPostedDate>
   </company>
 </companyDetails>

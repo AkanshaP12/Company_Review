@@ -99,6 +99,7 @@ namespace Company_Review.Controls
             populateDepartmentsAndLocations(null);
             Cmb_Empl_Status.SelectedValue = "All status";
             Itc_FilterTags.ItemsSource = companyReviewFilter.getUIFilterTags();
+            Cmb_Sort_By.SelectedValue = "Newest first";
         }
 
         private void loadFromFile()

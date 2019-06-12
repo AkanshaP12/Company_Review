@@ -50,6 +50,7 @@ namespace Company_Review
 
             language = Properties.Settings.Default.language;
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
             InitializeComponent();
             this.DataContext = this;
             loadCultures();
@@ -91,8 +92,14 @@ namespace Company_Review
         {
             string txt = ((ComboBoxItem)(sender as ComboBox).SelectedItem).Content.ToString();
             language = txt.Substring(0, 2);
-            Properties.Settings.Default.language = language;
-            Properties.Settings.Default.Save();
+            
+            MessageBoxResult result = MessageBox.Show("Application will be closed to reflect the changes. Please re-open application after it has been closed. Do you want to continue?", "Language option changed", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if(result == MessageBoxResult.Yes)
+            {
+                Properties.Settings.Default.language = language;
+                Properties.Settings.Default.Save();
+                Close();
+            }
         }
     }
 }
