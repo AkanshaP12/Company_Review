@@ -117,13 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn_addreview" xml:space="preserve">
+    <value>Add Review</value>
+  </data>
   <data name="flowDirection" xml:space="preserve">
     <value>LeftToRight</value>
   </data>
   <data name="txt_apptitle" xml:space="preserve">
     <value>View reviews</value>
   </data>
-  <data name="txt_viewReviews" xml:space="preserve">
-    <value />
+  <data name="txt_comfilter" xml:space="preserve">
+    <value>Filter for company</value>
+  </data>
+  <data name="txt_depfilter" xml:space="preserve">
+    <value>Filter for departments</value>
+  </data>
+  <data name="txt_empstatusfilter" xml:space="preserve">
+    <value>Filter for employment status</value>
+  </data>
+  <data name="txt_locfilter" xml:space="preserve">
+    <value>Filter for locations</value>
+  </data>
+  <data name="txt_sortby" xml:space="preserve">
+    <value>Sort by:</value>
+  </data>
+  <data name="txt_tagsfilter" xml:space="preserve">
+    <value>Tags based on filters:</value>
   </data>
 </root>

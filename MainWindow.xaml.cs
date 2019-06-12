@@ -65,7 +65,10 @@ namespace Company_Review
                 ComboBoxItem cb = new ComboBoxItem();
                 cb.Content = culture;
                 cultureItems.Add(cb);
-
+                if(culture.StartsWith(language))
+                {
+                    cb.IsSelected = true;
+                }
             }
             Cbx_lang.ItemsSource = cultureItems;
         }

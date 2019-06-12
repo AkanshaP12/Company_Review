@@ -61,6 +61,15 @@ namespace Company_Review.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Review.
+        /// </summary>
+        public static string btn_addreview {
+            get {
+                return ResourceManager.GetString("btn_addreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string flowDirection {
@@ -79,11 +88,56 @@ namespace Company_Review.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Filter for company.
         /// </summary>
-        public static string txt_viewReviews {
+        public static string txt_comfilter {
             get {
-                return ResourceManager.GetString("txt_viewReviews", resourceCulture);
+                return ResourceManager.GetString("txt_comfilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter for departments.
+        /// </summary>
+        public static string txt_depfilter {
+            get {
+                return ResourceManager.GetString("txt_depfilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter for employment status.
+        /// </summary>
+        public static string txt_empstatusfilter {
+            get {
+                return ResourceManager.GetString("txt_empstatusfilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter for locations.
+        /// </summary>
+        public static string txt_locfilter {
+            get {
+                return ResourceManager.GetString("txt_locfilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort by:.
+        /// </summary>
+        public static string txt_sortby {
+            get {
+                return ResourceManager.GetString("txt_sortby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags based on filters:.
+        /// </summary>
+        public static string txt_tagsfilter {
+            get {
+                return ResourceManager.GetString("txt_tagsfilter", resourceCulture);
             }
         }
     }

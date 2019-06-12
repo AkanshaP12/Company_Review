@@ -127,15 +127,15 @@
                         </StackPanel>
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Review Title" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="40" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.reviewTitle}" VerticalAlignment="Top" Width="250" FontSize="20" ToolTip="" AcceptsReturn="True"/>
+                            <TextBox HorizontalAlignment="Left" Height="40" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.reviewTitle}" VerticalAlignment="Top" Width="250" FontSize="20" AcceptsReturn="True"/>
                         </StackPanel>
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pros" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Height="100" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.prosAsString}" VerticalAlignment="Top" Width="250" FontSize="20" ToolTip="" VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
+                            <TextBox HorizontalAlignment="Left" Height="100" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.prosAsString}" VerticalAlignment="Top" Width="250" FontSize="20" VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
                         </StackPanel>
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cons" VerticalAlignment="Top" Height="30" Width="250" FontSize="20"/>
-                            <TextBox HorizontalAlignment="Left" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.consAsString}" VerticalAlignment="Top" Width="250" FontSize="20" ToolTip="" Height="100"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
+                            <TextBox HorizontalAlignment="Left" Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding currentReview.consAsString}" VerticalAlignment="Top" Width="250" FontSize="20" Height="100"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
                         </StackPanel>
                         <StackPanel  Orientation="Horizontal" Margin="20,10,0,10">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Would you recommend to your friend?" VerticalAlignment="Top" Height="55" Width="250" FontSize="20"/>

@@ -14,7 +14,7 @@
             <converters:PropertyVisibilityConverter x:Key="visibilityConverter"/>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="{x:Static resX:Resources.txt_apptitle}" Foreground="White" FontSize="20" Margin="25,5,0,0"></TextBlock>
@@ -36,7 +36,7 @@
                             <RowDefinition Height="20"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Filter for company" FontSize="15" Grid.Row="0" Margin="20,0,0,0" Foreground="White" />
+                        <TextBlock Text="{x:Static resX:Resources.txt_comfilter}" FontSize="15" Grid.Row="0" Margin="20,0,0,0" Foreground="White" />
                         <Grid Grid.Row="1">
                             <ComboBox IsEditable="True" Width="210" Height="25" IsTextSearchEnabled="False" x:Name="cb_companyName" 
                   Text="{Binding comboBoxSearchText}" KeyUp="Cb_companyName_KeyUp" KeyDown="Cb_companyName_KeyDown" SelectedValuePath="companyOverview.id" SelectionChanged="Cb_companyName_SelectionChanged" DropDownOpened="Cb_companyName_DropDownOpened" Margin="20,0,0,0">
@@ -65,7 +65,7 @@
                     </Grid>
                 </WrapPanel>
                 <StackPanel Orientation="Vertical" Margin="10,20,5,10" Grid.Row="1">
-                    <TextBlock Text="Filter for departments" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
+                    <TextBlock Text="{x:Static resX:Resources.txt_depfilter}" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
                     <ComboBox x:Name="Cmb_Departments" Width="210" HorizontalAlignment="Left" SelectedValuePath="departmentName" Margin="20,0,0,0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -79,7 +79,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="10,20,5,10" Grid.Row="2">
-                    <TextBlock Text="Filter for Locations" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
+                    <TextBlock Text="{x:Static resX:Resources.txt_locfilter}" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
                     <ComboBox x:Name="Cmb_Locations" Width="210" HorizontalAlignment="Left" SelectedValuePath="location" Margin="20,0,0,0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -94,7 +94,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="10,20,5,10" Grid.Row="3">
-                    <TextBlock Text="Filter for employment status" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
+                    <TextBlock Text="{x:Static resX:Resources.txt_empstatusfilter}" FontSize="15" Margin="20,0,0,0" Foreground="White"/>
                     <ComboBox Width="210" x:Name="Cmb_Empl_Status"  HorizontalAlignment="Left" Margin="20,0,0,0" SelectedValuePath="Content" SelectionChanged="Cmb_Empl_Status_SelectionChanged">
                         <ComboBoxItem Content="All status">
                         </ComboBoxItem>
@@ -128,7 +128,7 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Tags based on filters:" VerticalAlignment="Top" FontSize="14"></TextBlock>
+                    <TextBlock Grid.Column="0" Text="{x:Static resX:Resources.txt_tagsfilter}" VerticalAlignment="Top" FontSize="14"></TextBlock>
                     <WrapPanel Grid.Column="1" VerticalAlignment="Top" Orientation="Horizontal">
                         <ItemsControl x:Name="Itc_FilterTags">
                             <ItemsControl.ItemTemplate>
@@ -155,7 +155,7 @@
                     <Button Grid.Column="0" x:Name="Btn_AddReview" Width="85" Height="35" HorizontalAlignment="Left" Margin="30,0,0,0" Content="Add Review"  Click="Btn_AddReview_Click" Style="{StaticResource RoundButtonTemplate}"/>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0,0,35,0">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Sort by:" FontSize="14" />
+                            <TextBlock Text="{x:Static resX:Resources.txt_sortby}" FontSize="14" />
                             <ComboBox Width="110" x:Name="Cmb_Sort_By" HorizontalAlignment="Left" SelectedValuePath="Content" SelectionChanged="Cmb_Sort_By_SelectionChanged" Height="25" VerticalContentAlignment="Center" Margin="5,0,0,0">
                                 <ComboBoxItem Content="Highest rating">
                                 </ComboBoxItem>
